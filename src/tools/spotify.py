@@ -3,7 +3,7 @@ import os
 import requests
 from requests_oauthlib import OAuth2Session
 
-base_url = "https://localhost:8001"
+base_url = "https://www.sandbix.fr/spotifywidget"
 
 client_id = os.getenv("SPOTIFY_CLIENT_ID")
 client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")

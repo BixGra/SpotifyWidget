@@ -14,6 +14,12 @@ async def get_method():
     return current_song
 
 
+@app.get("/json")
+async def get_method():
+    current_song = get_current_song(tokens["access_token"])
+    return current_song
+
+
 @app.get("/connect")
 async def get_method():
     return RedirectResponse(authorization_url)
