@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, HTMLResponse
 from oauthlib.oauth2 import InvalidGrantError
 from requests.auth import HTTPBasicAuth
 
@@ -11,7 +11,8 @@ app = FastAPI()
 @app.get("/")
 async def get_method():
     current_song = get_current_song(tokens["access_token"])
-    return current_song
+    current_song_html = to_html(current_song)
+    return HTMLResponse(current_song_html)
 
 
 @app.get("/json")

@@ -22,7 +22,7 @@ authorization_url, _ = spotify.authorization_url(authorization_base_url)
 tokens = {"access_token": ""}
 
 
-def get_current_song(token):
+def get_current_song(token: str) -> dict:
     headers = {
         "Authorization": f"Bearer {token}"
     }
@@ -44,3 +44,10 @@ def get_current_song(token):
             current_song["error"] = status_code
             current_song["details"] = ""
     return current_song
+
+
+def to_html(song: dict) -> str:
+    html = f"""
+    <p><span class="name">{song.get("name", "error")}</span><span class="dash"> - </span><span class="artists">{song.get("artists", song)}</span></p>
+    """
+    return html
