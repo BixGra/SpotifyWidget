@@ -48,28 +48,13 @@ def get_current_song(token: str) -> dict:
 
 def to_html(song: dict) -> str:
     html = f"""
-    <div class="container">
-        <div class="text">
-            <span class="name">{song.get("name", "error")}</span>
-            <span class="dash"> - </span>
-            <span class="artists">{song.get("artists", song)}</span>
-        </div>
-    </div>
-    """
-    return html
-
-
-def to_html_loopable(song: dict) -> str:
-    html = f"""
-    <div class="container">
-        <div class="text">
-            <span class="name">{song.get("name", "error")}</span>
-            <span class="dash"> - </span>
-            <span class="artists">{song.get("artists", song)}</span>
-            <span class="blank">     </span>
-            <span class="name">{song.get("name", "error")}</span>
-            <span class="dash"> - </span>
-            <span class="artists">{song.get("artists", song)}</span>
+    <div class="section">
+        <div class="container">
+            <div class="text">
+                <span class="name">{song.get("name", "error")}</span>
+                <span class="dash"> - </span>
+                <span class="artists">{song.get("artists", song)}</span>
+            </div>
         </div>
     </div>
     """
