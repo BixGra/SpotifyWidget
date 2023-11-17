@@ -15,6 +15,13 @@ async def get_method():
     return HTMLResponse(current_song_html)
 
 
+@app.get("/loopable")
+async def get_method():
+    current_song = get_current_song(tokens["access_token"])
+    current_song_html_loopable = to_html_loopable(current_song)
+    return HTMLResponse(current_song_html_loopable)
+
+
 @app.get("/json")
 async def get_method():
     current_song = get_current_song(tokens["access_token"])

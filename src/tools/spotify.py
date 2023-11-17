@@ -57,3 +57,20 @@ def to_html(song: dict) -> str:
     </div>
     """
     return html
+
+
+def to_html_loopable(song: dict) -> str:
+    html = f"""
+    <div class="container">
+        <div class="text">
+            <span class="name">{song.get("name", "error")}</span>
+            <span class="dash"> - </span>
+            <span class="artists">{song.get("artists", song)}</span>
+            <span class="blank">     </span>
+            <span class="name">{song.get("name", "error")}</span>
+            <span class="dash"> - </span>
+            <span class="artists">{song.get("artists", song)}</span>
+        </div>
+    </div>
+    """
+    return html
