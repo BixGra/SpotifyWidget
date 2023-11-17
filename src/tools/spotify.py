@@ -48,6 +48,12 @@ def get_current_song(token: str) -> dict:
 
 def to_html(song: dict) -> str:
     html = f"""
-    <p><span class="name">{song.get("name", "error")}</span><span class="dash"> - </span><span class="artists">{song.get("artists", song)}</span></p>
+    <div class="container>
+        <div class="text">
+            <span class="name">{song.get("name", "error")}</span>
+            <span class="dash"> - </span>
+            <span class="artists">{song.get("artists", song)}</span>
+        </div>
+    </div>
     """
     return html
