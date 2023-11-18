@@ -46,6 +46,11 @@ def get_current_song(token: str) -> dict:
     return current_song
 
 
+def to_raw(song: dict) -> str:
+    raw = f"""{song.get("name", "error")} - {song.get("artists", song)}"""
+    return raw
+
+
 def to_html(song: dict) -> str:
     html = f"""
     <div class="section">
