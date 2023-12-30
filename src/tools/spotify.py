@@ -24,6 +24,8 @@ tokens = {"access_token": ""}
 def get_current_song() -> dict:
     current_song = {}
     current_song_details = spotify.get(current_song_url).json()
+    print(current_song_details)
+    print(type(current_song_details))
     current_song["name"] = current_song_details.get("item", {}).get("name")
     current_song["artists"] = ", ".join([artist.get("name", "Error") for artist in current_song_details.get("item", {}).get("artists", "Error")])
     return current_song
