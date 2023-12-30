@@ -10,21 +10,21 @@ app = FastAPI()
 
 @app.get("/")
 async def get_method():
-    current_song = get_current_song(tokens["access_token"])
+    current_song = get_current_song()
     current_song_html = to_html(current_song)
     return HTMLResponse(current_song_html)
 
 
 @app.get("/raw")
 async def get_method():
-    current_song = get_current_song(tokens["access_token"])
+    current_song = get_current_song()
     current_song_raw = to_raw(current_song)
     return current_song_raw
 
 
 @app.get("/json")
 async def get_method():
-    current_song = get_current_song(tokens["access_token"])
+    current_song = get_current_song()
     return current_song
 
 
