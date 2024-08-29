@@ -4,7 +4,7 @@ WORKDIR /etc/SpotifyWidget
 
 COPY . /etc/SpotifyWidget/.
 
-RUN  pip install --upgrade pip && pip --no-cache-dir install -r /etc/SpotifyWidget/requirements.txt
+RUN pip install --upgrade pip && pip --no-cache-dir install -r /etc/SpotifyWidget/requirements.txt
 
 ENV PYTHONPATH $PYTHONPATH:$PATH:/etc/SpotifyWidget/src/
 
