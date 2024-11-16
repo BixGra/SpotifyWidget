@@ -6,7 +6,7 @@ import requests
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse, HTMLResponse
 
-base_url = "https://sandbix.fr/spotify-widget"
+base_url = "https://sandbix.fr/spotifywidget"
 
 authorization_base_url = "https://accounts.spotify.com/authorize"
 
