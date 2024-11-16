@@ -5,6 +5,8 @@ from base64 import b64encode
 import requests
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse, HTMLResponse
+from apscheduler.schedulers.background import BackgroundScheduler
+
 
 base_url = "https://sandbix.fr/spotifywidget"
 
@@ -47,6 +49,15 @@ def set_username(new_username: str):
 
 def to_url(query_parameters: dict) -> str:
     return "?" + "&".join(map(lambda x: f"{x[0]}={x[1]}", query_parameters.items()))
+
+
+def refresh():
+    requests.get(f"{base_url}/refresh")
+
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(refresh, "interval", hours=60, id="refresh_token")
+scheduler.start()
 
 
 app = FastAPI()
@@ -98,6 +109,24 @@ async def get_method(error: str = None, code: str = None, state: int = 0):
         return "Error with states, please contact the service administrator."
 
 
+@app.get("/refresh")
+async def get_method():
+    response = requests.post(
+        token_url,
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": f"Basic {client_encoded}",
+        },
+        data={
+            "refresh_token": refresh_token,
+            "grant_type": "refresh_token",
+        }
+    )
+
+    set_token(response.json()["access_token"])
+    set_refresh_token(response.json()["refresh_token"])
+
+
 @app.get("/current-song")
 async def get_method():
     current_song = {}
@@ -115,6 +144,8 @@ async def get_method():
             current_song["name"] = current_song_details.get("item", {}).get("name", "Error")
             current_song["artists"] = [artist.get("name", "Error") for artist in current_song_details.get("item", {}).get("artists", "Error")]
         case _:
+            current_song_details = response.json()
             current_song["error"] = status_code
+            current_song["message"] = current_song_details.get("message", "Error")
     return current_song
 
