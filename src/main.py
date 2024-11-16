@@ -144,8 +144,7 @@ async def get_method():
             current_song["name"] = current_song_details.get("item", {}).get("name", "Error")
             current_song["artists"] = [artist.get("name", "Error") for artist in current_song_details.get("item", {}).get("artists", "Error")]
         case _:
-            current_song_details = response.json()
             current_song["error"] = status_code
-            current_song["message"] = current_song_details.get("message", "Error")
+            current_song["message"] = response.content
     return current_song
 
