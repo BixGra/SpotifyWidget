@@ -1,62 +1,14 @@
-import os
-import random
-from base64 import b64encode
-
-import requests
-from fastapi import FastAPI
-from fastapi.responses import RedirectResponse, HTMLResponse
 from apscheduler.schedulers.background import BackgroundScheduler
+from fastapi import FastAPI, Request
+from fastapi.responses import RedirectResponse, HTMLResponse
+from starlette.responses import JSONResponse
 
-
-base_url = "https://sandbix.fr/spotifywidget"
-
-authorization_base_url = "https://accounts.spotify.com/authorize"
-
-token_url = "https://accounts.spotify.com/api/token"
-
-api_base_url = "https://api.meethue.com/route/api/"
-
-client_id = os.getenv("SPOTIFY_CLIENT_ID")
-client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
-client_encoded = b64encode(f"{client_id}:{client_secret}".encode('utf-8')).decode('utf-8')
-scope = "user-read-currently-playing"
-response_type = "code"
-random_state = random.randint(1000000000, 9999999999)
-redirect_uri = f"{base_url}/callback"
-
-current_song_url = "https://api.spotify.com/v1/me/player/currently-playing"
-
-token = None
-refresh_token = None
-
-username = None
-
-
-def set_token(new_token: str):
-    global token
-    token = new_token
-
-
-def set_refresh_token(new_refresh_token: str):
-    global refresh_token
-    refresh_token = new_refresh_token
-
-
-def set_username(new_username: str):
-    global username
-    username = new_username
-
-
-def to_url(query_parameters: dict) -> str:
-    return "?" + "&".join(map(lambda x: f"{x[0]}={x[1]}", query_parameters.items()))
-
-
-def refresh():
-    requests.get(f"{base_url}/refresh")
-
+from src.tools.settings import base_url
+from src.tools.spotify import spotify
+from src.tools.users import users
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(refresh, "interval", hours=60, id="refresh_token")
+scheduler.add_job(users.refresh, "interval", minutes=30, id="refresh_token")
 scheduler.start()
 
 
@@ -64,87 +16,42 @@ app = FastAPI()
 
 
 @app.get("/")
-async def get_method():
-    return HTMLResponse(
-        f"""<a href="{base_url}/connect">connect</a>
-<a href="{base_url}/current-song">current-song</a>"""
-    )
+async def get_method(request: Request):
+    user_id = request.cookies.get("user_id")
+    if users.exists(user_id):
+        response = HTMLResponse(f"""<a href="{base_url}/current-song">current-song</a>""")
+    else:
+        response = HTMLResponse(f"""<a href="{base_url}/connect">connect</a>""")
+    return response
 
 
 @app.get("/connect")
 async def get_method():
-    authorization_url = authorization_base_url + to_url(
-        {
-            "client_id": client_id,
-            "response_type": response_type,
-            "state": random_state,
-            "redirect_uri": redirect_uri,
-            "scope": scope,
-        }
-    )
-    return RedirectResponse(authorization_url)
+    authorization_url = spotify.connect()
+    response = RedirectResponse(authorization_url)
+    return response
 
 
 @app.get("/callback")
-async def get_method(error: str = None, code: str = None, state: int = 0):
-    if state == random_state:
-        response = requests.post(
-            token_url,
-            headers={
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Authorization": f"Basic {client_encoded}",
-            },
-            data={
-                "redirect_uri": redirect_uri,
-                "grant_type": "authorization_code",
-                "code": code,
-            }
-        )
-
-        set_token(response.json()["access_token"])
-        set_refresh_token(response.json()["refresh_token"])
-
-        return RedirectResponse(base_url)
+async def get_method(error: str = None, code: str = None, state: str = ""):
+    if error:
+        response = JSONResponse({"error": error})
     else:
-        return "Error with states, please contact the service administrator."
-
-
-@app.get("/refresh")
-async def get_method():
-    response = requests.post(
-        token_url,
-        headers={
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": f"Basic {client_encoded}",
-        },
-        data={
-            "refresh_token": refresh_token,
-            "grant_type": "refresh_token",
-        }
-    )
-
-    set_token(response.json()["access_token"])
-    set_refresh_token(response.json()["refresh_token"])
+        try:
+            token, refresh_token = spotify.callback(code, state)
+            user_id = users.create(token, refresh_token)
+            response = RedirectResponse(base_url)
+            response.set_cookie(key="user_id", value=user_id)
+        except Exception as e:
+            response = JSONResponse({"error": str(e)})
+    return response
 
 
 @app.get("/current-song")
-async def get_method():
-    current_song = {}
-    response = requests.get(
-        current_song_url,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {token}",
-        },
-    )
-    status_code = response.status_code
-    match status_code:
-        case 200:
-            current_song_details = response.json()
-            current_song["name"] = current_song_details.get("item", {}).get("name", "Error")
-            current_song["artists"] = [artist.get("name", "Error") for artist in current_song_details.get("item", {}).get("artists", "Error")]
-        case _:
-            current_song["error"] = status_code
-            current_song["message"] = response.content
-    return current_song
+async def get_method(request: Request):
+    user_id = request.cookies.get("user_id")
+    token = users.get(user_id)
+    current_song = spotify.get_current_song(token)
+    response = JSONResponse(current_song)
+    return response
 
