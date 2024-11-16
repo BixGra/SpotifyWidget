@@ -29,7 +29,7 @@ class Users:
         del self.data[user_id]
 
     def refresh(self) -> None:
-        limit = datetime.now() - timedelta(minutes=30)
+        limit = datetime.now() - timedelta(days=7)
         for user_id, user_data in self.data.items():
             if user_data["last_use"] < limit:
                 self.delete(user_id)

@@ -19,7 +19,7 @@ app = FastAPI()
 async def get_method(request: Request):
     user_id = request.cookies.get("user_id")
     if users.exists(user_id):
-        response = HTMLResponse(f"""<a href="{base_url}/current-song">current-song</a>""")
+        response = HTMLResponse(f"""<p>{user_id}</p><a href="{base_url}/current-song">current-song</a>""")
     else:
         response = HTMLResponse(f"""<a href="{base_url}/connect">connect</a>""")
     return response
@@ -55,3 +55,13 @@ async def get_method(request: Request):
     response = JSONResponse(current_song)
     return response
 
+
+@app.get("/current-song/{user_id}")
+async def get_method(user_id: str):
+    if users.exists(user_id):
+        token = users.get(user_id)
+        current_song = spotify.get_current_song(token)
+        response = JSONResponse(current_song)
+    else:
+        response = JSONResponse({"error": f"Connection reset, please go to {base_url}"})
+    return response
