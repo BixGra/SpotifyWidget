@@ -6,6 +6,7 @@ from starlette.responses import JSONResponse
 from src.tools.settings import base_url
 from src.tools.spotify import spotify
 from src.tools.users import users
+from src.tools.utils import to_html
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(users.refresh, "interval", minutes=30, id="refresh_token")
@@ -19,7 +20,14 @@ app = FastAPI()
 async def get_method(request: Request):
     user_id = request.cookies.get("user_id")
     if users.exists(user_id):
-        response = HTMLResponse(f"""<p>{user_id}</p><a href="{base_url}/current-song">current-song</a>""")
+        response = HTMLResponse(
+            f"""<p>Token : {user_id}</p>
+            <p><a href="{base_url}/current-song/{user_id}">{base_url}/current-song/{user_id}</a> copy this link to embed the song in OBS browser source</p>
+            <p><a href="{base_url}/current-song">{base_url}/current-song</a></p>
+            <p><a href="{base_url}/current-song/json">{base_url}/current-song/json</a></p>
+            <p><a href="{base_url}/current-song/json/{user_id}">{base_url}/current-song/json/{user_id}</a></p>"""
+
+        )
     else:
         response = HTMLResponse(f"""<a href="{base_url}/connect">connect</a>""")
     return response
@@ -50,9 +58,13 @@ async def get_method(error: str = None, code: str = None, state: str = ""):
 @app.get("/current-song")
 async def get_method(request: Request):
     user_id = request.cookies.get("user_id")
-    token = users.get(user_id)
-    current_song = spotify.get_current_song(token)
-    response = JSONResponse(current_song)
+    if users.exists(user_id):
+        token = users.get(user_id)
+        current_song = to_html(spotify.get_current_song(token))
+        response = HTMLResponse(current_song)
+    else:
+        current_song = to_html({"error": "401", "message": f"Connection reset, please go to {base_url}"})
+        response = HTMLResponse(current_song)
     return response
 
 
@@ -60,8 +72,33 @@ async def get_method(request: Request):
 async def get_method(user_id: str):
     if users.exists(user_id):
         token = users.get(user_id)
+        current_song = to_html(spotify.get_current_song(token))
+        response = HTMLResponse(current_song)
+    else:
+        current_song = to_html({"error": "401", "message": f"Connection reset, please go to {base_url}"})
+        response = HTMLResponse(current_song)
+    return response
+
+
+@app.get("/current-song/json")
+async def get_method(request: Request):
+    user_id = request.cookies.get("user_id")
+    if users.exists(user_id):
+        token = users.get(user_id)
+        current_song = spotify.get_current_song(token)
+        response = JSONResponse(current_song)
+        return response
+    else:
+        response = JSONResponse({"error": "401", "message": f"Connection reset, please go to {base_url}"})
+    return response
+
+
+@app.get("/current-song/json/{user_id}")
+async def get_method(user_id: str):
+    if users.exists(user_id):
+        token = users.get(user_id)
         current_song = spotify.get_current_song(token)
         response = JSONResponse(current_song)
     else:
-        response = JSONResponse({"error": f"Connection reset, please go to {base_url}"})
+        response = JSONResponse({"error": "401", "message": f"Connection reset, please go to {base_url}"})
     return response

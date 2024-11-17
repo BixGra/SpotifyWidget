@@ -8,7 +8,7 @@ class Users:
         self.data = {}
 
     def exists(self, user_id: str) -> bool:
-        return user_id in self.data.keys()
+        return user_id in self.data
 
     def create(self, token: str, refresh_token: str) -> str:
         user_id = random_string(16)
