@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Vibur&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#frame {
+    width: 90%;
+    height: 90%;
+    font-family: 'Vibur', 'Titillium Web', Helvetica, Arial, sans-serif;
+    font-size: 40px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid #ffffff;
+    border-radius: 80px;
+    box-shadow: 0 0 3px #ffffff,
+        0 0 3px #ffffff,
+        0 0 30px #bc13fe,
+        0 0 12px #bc13fe,
+        0 0 42px #bc13fe,
+        inset 0 0 20px #bc13fe;
+
+    text-shadow:
+        0 0 7px #ffffff,
+        0 0 10px #ffffff,
+        0 0 21px #ffffff,
+        0 0 42px #bc13fe,
+        0 0 82px #bc13fe,
+        0 0 92px #bc13fe,
+        0 0 102px #bc13fe,
+        0 0 151px #bc13fe;
+    animation: pulsate 3s infinite alternate;
+}
+
+#item-2 {
+    font-weight: bold;
+}
+
+#item-sep {
+    padding: 0 10px 0 10px;
+}
+
+@keyframes pulsate {
+    100% {
+        text-shadow:
+            0 0 4px #ffffff,
+            0 0 11px #ffffff,
+            0 0 19px #ffffff,
+            0 0 40px #bc13fe,
+            0 0 80px #bc13fe,
+            0 0 90px #bc13fe,
+            0 0 100px #bc13fe,
+            0 0 150px #bc13fe;
+
+    }
+
+    0% {
+        text-shadow: 0 0 2px #ffffff,
+            0 0 4px #ffffff,
+            0 0 6px #ffffff,
+            0 0 10px #bc13fe,
+            0 0 45px #bc13fe,
+            0 0 55px #bc13fe,
+            0 0 70px #bc13fe,
+            0 0 80px #bc13fe;
+    }
+}

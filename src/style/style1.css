@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#frame {
+    width: 90%;
+    height: 90%;
+    font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
+    font-size: 40px;
+    color: #000000;
+    text-shadow: #ffffff 0 0 20px,
+        #ffffff 0 0 20px,
+        #ffffff 0 0 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#item-2 {
+    font-weight: bold;
+}
+
+#item-sep {
+    padding: 0 10px 0 10px;
+}
