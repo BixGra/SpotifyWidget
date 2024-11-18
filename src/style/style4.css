@@ -10,8 +10,8 @@ body {
 }
 
 #frame {
-    height: 100%;
-    width: 100%;
+    width: 90%;
+    height: 90%;
     font-family: 'Rocher';
     text-align: center;
     font-size: 40px;
