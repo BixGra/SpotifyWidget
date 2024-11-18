@@ -52,8 +52,8 @@ def to_example(index: int) -> str:
         output = f"""<html>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
         <head>
-        <link href="/src/style/style{index}.css" media="screen" rel="stylesheet" type="text/css"/>
-        <link href="/src/style/stylebox.css" media="screen" rel="stylesheet" type="text/css"/>
+        <link href="{base_url}/src/style/style{index}.css" media="screen" rel="stylesheet" type="text/css"/>
+        <link href="{base_url}/src/style/stylebox.css" media="screen" rel="stylesheet" type="text/css"/>
         </head>
         <body>
         <div id="frame">
