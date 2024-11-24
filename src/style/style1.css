@@ -1,28 +1,92 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Vibur&display=swap');
+
+#prod {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
-#frame {
+#song {
+    font-family: 'Vibur', Helvetica, Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 80px;
     width: 90%;
-    height: 90%;
-    font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
+
     font-size: 40px;
-    color: #000000;
-    text-shadow: #ffffff 0 0 20px,
-        #ffffff 0 0 20px,
-        #ffffff 0 0 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    color: #ffffff;
+
+    border: 3px solid #ffffff;
+    border-radius: 80px;
+    box-shadow: 0 0 3px #ffffff,
+        0 0 3px #ffffff,
+        0 0 30px #bc13fe,
+        0 0 12px #bc13fe,
+        0 0 42px #bc13fe,
+        inset 0 0 20px #bc13fe;
+
+    text-shadow:
+        0 0 7px #ffffff,
+        0 0 10px #ffffff,
+        0 0 21px #ffffff,
+        0 0 42px #bc13fe,
+        0 0 82px #bc13fe,
+        0 0 92px #bc13fe,
+        0 0 102px #bc13fe,
+        0 0 151px #bc13fe;
+    animation: pulsate 1s infinite alternate;
+
+    overflow-x: scroll;
+    scrollbar-width: none;
+    overflow-y: hidden;
+    text-wrap: nowrap;
+
+    .item-image {
+        display: none;
+    }
+
+    .item-1 {
+    }
+
+    .item-sep {
+        padding: 0 10px 0 10px;
+    }
+
+    .item-2 {
+        font-weight: bold;
+    }
 }
 
-#item-2 {
-    font-weight: bold;
+@keyframes pulsate {
+    100% {
+        text-shadow: 0 0 4px #ffffff,
+        0 0 11px #ffffff,
+        0 0 19px #ffffff,
+        0 0 40px #bc13fe,
+        0 0 80px #bc13fe,
+        0 0 90px #bc13fe,
+        0 0 100px #bc13fe,
+        0 0 150px #bc13fe;
+
+    }
+
+    0% {
+        text-shadow: 0 0 2px #ffffff,
+        0 0 4px #ffffff,
+        0 0 6px #ffffff,
+        0 0 10px #bc13fe,
+        0 0 45px #bc13fe,
+        0 0 55px #bc13fe,
+        0 0 70px #bc13fe,
+        0 0 80px #bc13fe;
+    }
 }
 
-#item-sep {
-    padding: 0 10px 0 10px;
-}

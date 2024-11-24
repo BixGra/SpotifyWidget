@@ -3,6 +3,7 @@ import requests
 from src.tools.settings import client_id, client_encoded, redirect_uri
 from src.tools.utils import random_string, to_url
 
+
 authorization_base_url = "https://accounts.spotify.com/authorize"
 token_url = "https://accounts.spotify.com/api/token"
 current_song_url = "https://api.spotify.com/v1/me/player/currently-playing"
@@ -75,6 +76,7 @@ class SpotifyClient:
             case 200:
                 current_song_details = response.json()
                 if current_song_details["is_playing"]:
+                    current_song["image"] = current_song_details.get("item", {}).get("images", [{}])[0].get("url", "")
                     current_song["name"] = current_song_details.get("item", {}).get("name", "Error")
                     current_song["artists"] = [artist.get("name", "Error") for artist in current_song_details.get("item", {}).get("artists", "Error")]
                 else:

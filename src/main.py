@@ -7,7 +7,7 @@ from starlette.staticfiles import StaticFiles
 from src.tools.settings import base_url
 from src.tools.spotify import spotify
 from src.tools.users import users
-from src.tools.utils import to_html, to_example
+from src.tools.utils import render_connect, render_main, render_iframe
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(users.refresh, "interval", minutes=30, id="refresh_token")
@@ -20,27 +20,11 @@ app.mount("/src", StaticFiles(directory="src"))
 
 @app.get("/")
 async def get_method(request: Request):
-    user_id = request.cookies.get("user_id")
+    user_id = request.cookies.get("spotify_user")
     if users.exists(user_id):
-        response = HTMLResponse(
-            f"""<p>Token : {user_id}</p>
-            <p><a href="{base_url}/current-song/{user_id}">{base_url}/current-song/{user_id}</a> copy this link to embed the song in OBS browser source</p>
-            <p><a href="{base_url}/current-song">{base_url}/current-song</a></p>
-            <p><a href="{base_url}/current-song/json">{base_url}/current-song/json</a></p>
-            <p><a href="{base_url}/current-song/json/{user_id}">{base_url}/current-song/json/{user_id}</a></p>
-            <p><a href="{base_url}/examples/1">example 1</a></p>
-            <p><a href="{base_url}/examples/2">example 2</a></p>
-            <p><a href="{base_url}/examples/3">example 3</a></p>
-            <p><a href="{base_url}/examples/4">example 4</a></p>"""
-        )
+        response = HTMLResponse(render_main(user_id))
     else:
-        response = HTMLResponse(
-            f"""<p><a href="{base_url}/connect">connect</a></p>
-            <p><a href="{base_url}/examples/1">example 1</a></p>
-            <p><a href="{base_url}/examples/2">example 2</a></p>
-            <p><a href="{base_url}/examples/3">example 3</a></p>
-            <p><a href="{base_url}/examples/4">example 4</a></p>"""
-        )
+        response = HTMLResponse(render_connect())
     return response
 
 
@@ -60,63 +44,14 @@ async def get_method(error: str = None, code: str = None, state: str = ""):
             token, refresh_token = spotify.callback(code, state)
             user_id = users.create(token, refresh_token)
             response = RedirectResponse(base_url)
-            response.set_cookie(key="user_id", value=user_id)
+            response.set_cookie(key="spotify_user", value=user_id)
         except Exception as e:
             response = JSONResponse({"error": str(e)})
     return response
 
 
-@app.get("/current-song")
-async def get_method(request: Request):
-    user_id = request.cookies.get("user_id")
-    if users.exists(user_id):
-        token = users.get(user_id)
-        current_song = to_html(spotify.get_current_song(token))
-        response = HTMLResponse(current_song)
-    else:
-        current_song = to_html({"error": "401", "message": f"Connection reset, please go to {base_url}"})
-        response = HTMLResponse(current_song)
-    return response
-
-
-@app.get("/current-song/{user_id}")
-async def get_method(user_id: str):
-    if users.exists(user_id):
-        token = users.get(user_id)
-        current_song = to_html(spotify.get_current_song(token))
-        response = HTMLResponse(current_song)
-    else:
-        current_song = to_html({"error": "401", "message": f"Connection reset, please go to {base_url}"})
-        response = HTMLResponse(current_song)
-    return response
-
-
-@app.get("/current-song/json")
-async def get_method(request: Request):
-    user_id = request.cookies.get("user_id")
-    if users.exists(user_id):
-        token = users.get(user_id)
-        current_song = spotify.get_current_song(token)
-        response = JSONResponse(current_song)
-        return response
-    else:
-        response = JSONResponse({"error": "401", "message": f"Connection reset, please go to {base_url}"})
-    return response
-
-
-@app.get("/current-song/json/{user_id}")
-async def get_method(user_id: str):
-    if users.exists(user_id):
-        token = users.get(user_id)
-        current_song = spotify.get_current_song(token)
-        response = JSONResponse(current_song)
-    else:
-        response = JSONResponse({"error": "401", "message": f"Connection reset, please go to {base_url}"})
-    return response
-
-
-@app.get("/examples/{index}")
+@app.get("/examples/iframe/{index}")
 async def get_method(index: int):
-    example = to_example(index)
+    example = render_iframe(index)
     response = HTMLResponse(example)
     return response

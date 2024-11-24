@@ -2,16 +2,23 @@ import os
 import secrets
 import string
 import random
+from email.quoprimime import body_decode
 
+from click import style
+
+from src.tools.html_base import *
 from src.tools.settings import base_url
+
 
 alphabet = string.ascii_letters + string.digits
 
 songs = [
-    {"name": "JUSTE AMIS", "artists": ["THEA"]},
-    {"name": "Knights of Cydonia", "artists": ["Muse"]},
-    {"name": "Floral", "artists": ["Ponce", "CEYLON", "Princesse Näpalm", "Léo Lenvers"]},
-    {"name": "Harder, Better, Faster, Stronger", "artists": ["Daft Punk"]}
+    #{"image": "https://i.scdn.co/image/ab67616d0000b2735a92350866fd5e6b7a10de22", "name": "JUSTE AMIS", "artists": ["THEA"]},
+    #{"image": "https://i.scdn.co/image/ab67616d0000b27328933b808bfb4cbbd0385400", "name": "Knights of Cydonia", "artists": ["Muse"]},
+    {"image": "https://i.scdn.co/image/ab67616d0000b273fad5111be86806be0bbbe2e2", "name": "Floral", "artists": ["Ponce", "CEYLON", "Princesse Näpalm", "Léo Lenvers"]},
+    #{"image": "https://i.scdn.co/image/ab67616d0000b27354a277d652eba4cd35a2e78a", "name": "Harder, Better, Faster, Stronger", "artists": ["Daft Punk"]},
+    #{"image": "https://i.scdn.co/image/ab67616d0000b273bd2b38759d23dba73eea6a5c", "name": "Insomnies", "artists": ["Colt"]},
+    #{"image": "https://i.scdn.co/image/ab67616d0000b273193c2fafdce8f116b5ca0a78", "name": "Juna", "artists": ["Clairo"]}
 ]
 
 
@@ -23,52 +30,31 @@ def to_url(query_parameters: dict) -> str:
     return "?" + "&".join(map(lambda x: f"{x[0]}={x[1]}", query_parameters.items()))
 
 
-def to_html(current_song: dict) -> str:
+def render_song(current_song: dict) -> str:
     if "name" in current_song:
-        output = f"""<div id="frame">
-        <div id="item-1"><p id="text-1">{current_song.get("name", "Name not found")}</p></div>
-        <div id="item-sep"><p id="text-sep">-</p></div>
-        <div id="item-2"><p id="text-2">{", ".join(current_song.get("artists", ["Artists not found"]))}</p></div>
-        </div>"""
+        song = SONG.format(image=current_song["image"], text_1=current_song["name"], text_2=", ".join(current_song["artists"]))
     elif "status" in current_song:
-        output = f"""<div id="frame">
-        <div id="item-1"><p id="text-1">{current_song.get("status", "Not playing")}</p></div>
-        <div id="item-sep"><p id="text-sep"></p></div>
-        <div id="item-2"><p id="text-2">Sometimes, it's nice to enjoy the silence</p></div>
-        </div>"""
+        song = SONG.format(image="", text_1=current_song["status"], text_2="We like it quiet")
     else:
-        output = f"""<div id="frame">
-        <div id="item-1"><p id="text-1">{current_song.get("error", "Error")}</p></div>
-        <div id="item-sep"><p id="text-sep"></p></div>
-        <div id="item-2"><p id="text-2">{current_song.get("message", "Please check the website")}</p></div>
-        </div>"""
-    return output
+        song = SONG.format(image="", text_1=current_song.get("name", "Error"), text_2=current_song.get("message", "Please check the website"))
+    return song
 
-def to_example(index: int) -> str:
-    if os.path.exists(f"./src/style/style{index}.css"):
-        with open(f"./src/style/style{index}.css") as f:
-            css = f.read()
-        song = random.choice(songs)
-        output = f"""<html>
-        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-        <head>
-        <link href="{base_url}/src/style/style{index}.css" media="screen" rel="stylesheet" type="text/css"/>
-        <link href="{base_url}/src/style/stylebox.css" media="screen" rel="stylesheet" type="text/css"/>
-        </head>
-        <body>
-        <div id="frame">
-            <div id="item-1"><p id="text-1">{song["name"]}</p></div>
-            <div id="item-sep"><p id="text-sep"> - </p></div>
-            <div id="item-2"><p id="text-2">{", ".join(song["artists"])}</p></div>
-        </div>
-        <div id="item-copy">
-            <p id="text-copy">Triple clic and copy the box content to your OBS source "custom CSS"</p>
-        </div>
-        <div id="item-css">
-            <p id="text-css">{css}</p>
-        </div>
-        </body>
-        </html>"""
-    else:
-        output = f"""<p>Error, go back to {base_url}</p>"""
-    return output
+
+def render_iframe(index: int) -> str:
+    song = render_song(random.choice(songs))
+    page = IFRAME.format(body=song, style=index)
+    return page
+
+
+def render_connect() -> str:
+    page = BASE.format(body=CONNECT, styles="")
+    return page
+
+
+def render_main(token: str) -> str:
+    main = MAIN.format(
+        token=token,
+        **{f"gallery_{i+1}_id": i+1 for i in range(6)},
+    )
+    page = BASE.format(body=main)
+    return page
