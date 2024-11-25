@@ -302,6 +302,12 @@ iframe {
 
 .zoom-frame {
     border: 1px #fede64 solid;
+    overflow: hidden;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .zoom-bar {
