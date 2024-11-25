@@ -19,10 +19,10 @@ songs = [
 names = [
     "Test template",
     "Pink neon",
-    "truc",
-    "gzbifezfzef",
-    "blablalbla",
-    "oui c'est joli en vrai",
+    "3D Effect",
+    "Classic",
+    "LexiTVz",
+    "Ponce",
 ]
 
 
@@ -44,6 +44,12 @@ def render_song(current_song: dict) -> str:
     return song
 
 
+def render_current_song(current_song: dict) -> str:
+    song = render_song(current_song)
+    page = PROD.format(body=song)
+    return page
+
+
 def render_iframe(index: int) -> str:
     song = render_song(random.choice(songs))
     page = IFRAME.format(body=song, style=index)
@@ -51,13 +57,11 @@ def render_iframe(index: int) -> str:
 
 
 def render_example(index: int) -> str:
-    song = render_song(random.choice(songs))
     css = ""
     if os.path.exists(f"./src/style/style{index}.css"):
         with open(f"./src/style/style{index}.css") as f:
             lines = f.readlines()
         css = "<br>".join(map(lambda x: x.rstrip("\n").replace("  ", "&nbsp;&nbsp;"), lines))
-        print(css)
     example = EXAMPLE.format(index=index, css=css)
     page = BASE.format(body=example)
     return page

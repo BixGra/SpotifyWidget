@@ -7,7 +7,7 @@ from starlette.staticfiles import StaticFiles
 from src.tools.settings import base_url
 from src.tools.spotify import spotify
 from src.tools.users import users
-from src.tools.utils import render_connect, render_main, render_iframe, render_example
+from src.tools.utils import render_connect, render_main, render_iframe, render_example, render_song, render_current_song
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(users.refresh, "interval", minutes=30, id="refresh_token")
@@ -61,4 +61,28 @@ async def get_method(index: int):
 async def get_method(index: int):
     example = render_iframe(index)
     response = HTMLResponse(example)
+    return response
+
+
+@app.get("/current-song/{user_id}")
+async def get_method(user_id: str):
+    if users.exists(user_id):
+        token = users.get(user_id)
+        current_song = render_current_song(spotify.get_current_song(token))
+        response = HTMLResponse(current_song)
+    else:
+        current_song = render_current_song({"error": "401", "message": f"Connection reset, please go to {base_url}"})
+        response = HTMLResponse(current_song)
+    return response
+
+
+@app.get("/current-song/{user_id}/json")
+async def get_method(user_id: str):
+    if users.exists(user_id):
+        token = users.get(user_id)
+        current_song = spotify.get_current_song(token)
+        response = JSONResponse(current_song)
+    else:
+        current_song = {"error": "401", "message": f"Connection reset, please go to {base_url}"}
+        response = JSONResponse(current_song)
     return response

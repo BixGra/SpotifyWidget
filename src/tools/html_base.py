@@ -29,7 +29,7 @@ PROD = f"""
 <!doctype html>
 <html lang="en">
 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="30">
+<meta http-equiv="refresh" content="15">
 <head>
 <title>Sandbix - Spotify Widget</title>
 </head>
@@ -54,18 +54,24 @@ CONNECT = f"""<div class="main-connect">
     </a>
 </div>"""
 
-MAIN = f"""<div class="header">
-    <div class="header-left">
-        <div class="header-title body-text">
-            Spotify<span class="bold-text">Widget</span>
+HEADER = f"""<div class="header">
+    <a href="{base_url}/">
+        <div class="header-left">
+            <div class="header-title body-text">
+                Spotify<span class="bold-text">Widget</span>
+            </div>
         </div>
-    </div>
-    <div class="header-right">
-        <div class="header-about bold-text body-text">
-            About
+    </a>
+    <a href="{base_url}/about">
+        <div class="header-right">
+            <div class="header-about bold-text body-text">
+                About
+            </div>
         </div>
-    </div>
-</div>
+    </a>
+</div>"""
+
+MAIN = f"""{HEADER}
 <div class="main">
     <div class="main-top">
         <div class="main-title bold-text h1-text">
@@ -79,10 +85,10 @@ MAIN = f"""<div class="header">
         <div class="main-info rounded">
             <div class="main-token">
                 <div class="token-title bold-text body-text">
-                    Your token
+                    Your widget URL
                 </div>
                 <div class="token-item small-text rounded">
-                    {{token}}
+                    {base_url}/current-song/{{token}}
                 </div>
             </div>
             <div class="main-tuto">
@@ -90,7 +96,12 @@ MAIN = f"""<div class="header">
                     How to use SpotifyWidget
                 </div>
                 <div class="tuto-item small-text rounded">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Copy this address and paste it in a new <span class="bold-text">Browser Source</span> in OBS.
+                    <br><br>
+                    Then chose your favorite design and add the CSS code inside the <span class="bold-text">Custom CSS</span> field.
+                    <br><br><br><br>
+                    If you want to play with the data, you can get the <span class="bold-text">JSON</span> output 
+                    on <a href="{base_url}/current-song/{{token}}/json" target="_blank"><span class="bold-text yellow-text">THIS</span></a> url.
                 </div>
             </div>
         </div>
@@ -207,19 +218,7 @@ MAIN = f"""<div class="header">
     </div>
 </div>"""
 
-EXAMPLE = f"""
-<div class="header">
-    <div class="header-left">
-        <div class="header-title body-text">
-            Spotify<span class="bold-text">Widget</span>
-        </div>
-    </div>
-    <div class="header-right">
-        <div class="header-about bold-text body-text">
-            About
-        </div>
-    </div>
-</div>
+EXAMPLE = f"""{HEADER}
 <div class="main-zoom rounded">
     <div class="zoom-widget">
         <div class="zoom-frame frame rounded">
@@ -230,14 +229,15 @@ EXAMPLE = f"""
         <div class="zoom-bar-text bold-text body-text">
             Copy this CSS and paste it in your OBS source, in the <span class="white-text">custom CSS</span> field
         </div>
-        <div class="zoom-bar-button bold-text rounded">
+        <div id="copy-button" class="zoom-bar-button bold-text rounded" onClick="copy();">
             Copy
         </div>
     </div>
-    <div class="zoom-text small-text rounded">
+    <div id="copy-css" class="zoom-text small-text rounded">
         {{css}}
     </div>
 </div>
+<script src="{base_url}/src/script/copy.js"></script>
 """
 
 SONG = f"""<div id="song">

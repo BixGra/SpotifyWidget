@@ -75,7 +75,7 @@ class SpotifyClient:
             case 200:
                 current_song_details = response.json()
                 if current_song_details["is_playing"]:
-                    current_song["image"] = current_song_details.get("item", {}).get("images", [{}])[0].get("url", "")
+                    current_song["image"] = current_song_details.get("item", {}).get("album", {}).get("images", [{}])[0].get("url", "")
                     current_song["name"] = current_song_details.get("item", {}).get("name", "Error")
                     current_song["artists"] = [artist.get("name", "Error") for artist in current_song_details.get("item", {}).get("artists", "Error")]
                 else:

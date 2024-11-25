@@ -31,6 +31,10 @@ body {
     color: #ffffff;
 }
 
+.yellow-text {
+    color: #fede64;
+}
+
 .rounded {
     border-radius: 5px;
 }
@@ -327,10 +331,26 @@ iframe {
     color: #fede64;
     padding: 10px;
     transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .zoom-bar-button:hover {
     background-color: #404040;
+    transition: background-color 0.3s;
+}
+
+.zoom-bar-button-clicked {
+    background-color: #fede64;
+    color: #303030;
+    padding: 10px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.zoom-bar-button-clicked:hover {
+    background-color: #404040;
+    color: #fede64;
+    padding: 10px;
     transition: background-color 0.3s;
 }
 
