@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Vibur&display=swap');
 
 #prod {
     height: 100vh;
@@ -8,30 +9,107 @@
     justify-content: center;
     align-items: center;
 
+    font-family: 'Vibur', Helvetica, Arial, sans-serif;
+    font-size: 18vh;
+    color: #ffffff;
 }
 
 #song {
-    font-family: Helvetica, Arial, sans-serif;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 90%;
 
-    color: #ffffff;
+    border: 1vh solid #ffffff;
+    border-radius: 100vh;
+    box-shadow: 0 0 1vh #ffffff,
+        0 0 1vh #ffffff,
+        0 0 10vh #bc13fe,
+        0 0 4vh #bc13fe,
+        0 0 14vh #bc13fe,
+        inset 0 0 7vh #bc13fe;
 
-    .item-image {
+    text-shadow:
+        0 0 2vh #ffffff,
+        0 0 3vh #ffffff,
+        0 0 7vh #ffffff,
+        0 0 14vh #bc13fe,
+        0 0 28vh #bc13fe,
+        0 0 32vh #bc13fe,
+        0 0 36vh #bc13fe,
+        0 0 50vh #bc13fe;
+
+    animation: pulsate 1s infinite alternate;
+
+    overflow: hidden;
+
+    .album-container {
         display: none;
     }
 
-    .item-1 {
+    .album {
+
     }
 
-    .item-sep {
-        padding: 0 10px 0 10px;
+    .info-container {
+        display: inline-flex;
+        align-items: center;
+
+        padding: 0 40vh 0 40vh;
+
+        text-wrap: nowrap;
+        overflow-x: scroll;
+        scrollbar-width: none;
     }
 
-    .item-2 {
-        font-weight: bold;
+    .name-container {
+
+    }
+
+    .name {
+        margin: 2px;
+    }
+
+    .separator-container {
+
+    }
+
+    .separator {
+        padding: 0 5vh 0 5vh;
+        margin: 2px;
+    }
+
+    .artists-container {
+
+    }
+
+    .artists {
+        margin: 2px;
     }
 }
 
+@keyframes pulsate {
+    100% {
+        text-shadow: 0 0 2vh #ffffff,
+        0 0 4vh #ffffff,
+        0 0 6vh #ffffff,
+        0 0 14vh #bc13fe,
+        0 0 26vh #bc13fe,
+        0 0 30vh #bc13fe,
+        0 0 33vh #bc13fe,
+        0 0 50vh #bc13fe;
+
+    }
+
+    0% {
+        text-shadow: 0 0 .5vh #ffffff,
+        0 0 1vh #ffffff,
+        0 0 2vh #ffffff,
+        0 0 3vh #bc13fe,
+        0 0 15vh #bc13fe,
+        0 0 18vh #bc13fe,
+        0 0 24vh #bc13fe,
+        0 0 28vh #bc13fe;
+    }
+}

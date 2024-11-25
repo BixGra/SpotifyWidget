@@ -22,6 +22,7 @@ IFRAME = f"""
 <title>Sandbix - Spotify Widget</title>
 </head>
 <body id="prod" style="background-color: #161616;">{{body}}</body>
+<script src="{base_url}/src/script/script.js"></script>
 </html>"""
 
 PROD = f"""
@@ -33,6 +34,7 @@ PROD = f"""
 <title>Sandbix - Spotify Widget</title>
 </head>
 <body id="prod">{{body}}</body>
+<script src="{base_url}/src/script/script.js"></script>
 </html>"""
 
 CONNECT = f"""<div class="main-connect">
@@ -96,12 +98,12 @@ MAIN = f"""<div class="header">
             <div class="gallery-item one rounded">
                 <div class="gallery-widget rounded">
                     <div class="frame">
-                        <iframe height="20%" width="90%" src="{base_url}/examples/iframe/{{gallery_1_id}}"></iframe>
+                        <iframe src="{base_url}/examples/iframe/{{gallery_1_id}}"></iframe>
                     </div>
                 </div>
                 <div class="gallery-bar">
                     <div class="bar-title bold-text body-text">
-                        This is the widget name
+                        {{gallery_1_name}}
                     </div>
                     <a href="{base_url}/examples/{{gallery_1_id}}">
                         <div class="bar-button rounded">
@@ -119,7 +121,7 @@ MAIN = f"""<div class="header">
                 </div>
                 <div class="gallery-bar">
                     <div class="bar-title bold-text body-text">
-                        This is the widget name
+                        {{gallery_2_name}}
                     </div>
                     <a href="{base_url}/examples/{{gallery_2_id}}">
                         <div class="bar-button rounded">
@@ -137,7 +139,7 @@ MAIN = f"""<div class="header">
                 </div>
                 <div class="gallery-bar">
                     <div class="bar-title bold-text body-text">
-                        This is the widget name
+                        {{gallery_3_name}}
                     </div>
                     <a href="{base_url}/examples/{{gallery_3_id}}">
                         <div class="bar-button rounded">
@@ -155,7 +157,7 @@ MAIN = f"""<div class="header">
                 </div>
                 <div class="gallery-bar">
                     <div class="bar-title bold-text body-text">
-                        This is the widget name
+                        {{gallery_4_name}}
                     </div>
                     <a href="{base_url}/examples/{{gallery_4_id}}">
                         <div class="bar-button rounded">
@@ -173,7 +175,7 @@ MAIN = f"""<div class="header">
                 </div>
                 <div class="gallery-bar">
                     <div class="bar-title bold-text body-text">
-                        This is the widget name
+                        {{gallery_5_name}}
                     </div>
                     <a href="{base_url}/examples/{{gallery_5_id}}">
                         <div class="bar-button rounded">
@@ -191,7 +193,7 @@ MAIN = f"""<div class="header">
                 </div>
                 <div class="gallery-bar">
                     <div class="bar-title bold-text body-text">
-                        This is the widget name
+                        {{gallery_6_name}}
                     </div>
                     <a href="{base_url}/examples/{{gallery_6_id}}">
                         <div class="bar-button rounded">
@@ -205,7 +207,7 @@ MAIN = f"""<div class="header">
     </div>
 </div>"""
 
-ZOOM = f"""
+EXAMPLE = f"""
 <div class="header">
     <div class="header-left">
         <div class="header-title body-text">
@@ -221,7 +223,7 @@ ZOOM = f"""
 <div class="main-zoom rounded">
     <div class="zoom-widget">
         <div class="zoom-frame frame rounded">
-            {{widget}}
+            <iframe src="{base_url}/examples/iframe/{{index}}"></iframe>
         </div>
     </div>
     <div class="zoom-bar">
@@ -239,11 +241,13 @@ ZOOM = f"""
 """
 
 SONG = f"""<div id="song">
-    <div class="item-image">
-        <img class="image-1" src="{{image}}"/>
+    <div class="album-container">
+        <img class="album" src="{{album}}"/>
     </div>
-    <div class="item-1"><p class="text-1">{{text_1}}</p></div>
-    <div class="item-sep"><p class="text-sep">-</p></div>
-    <div class="item-2"><p class="text-2">{{text_2}}</p></div>
+    <div class="info-container">
+        <div class="name-container"><p class="name">{{name}}</p></div>
+        <div class="separator-container"><p class="separator">-</p></div>
+        <div class="artists-container"><p class="artists">{{artists}}</p></div>
+    </div>
 </div>
 """

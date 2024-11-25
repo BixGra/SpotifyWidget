@@ -224,9 +224,6 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-
-    scale: 80%;
 }
 
 iframe {
@@ -335,6 +332,7 @@ iframe {
     flex: 1;
     background-color: #161616;
     padding: 30px;
+    white-space: pre;
     overflow-y: scroll;
 }
 

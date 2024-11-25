@@ -1,6 +1,7 @@
+from datetime import datetime, timedelta
+
 from src.tools.spotify import spotify
 from src.tools.utils import random_string
-from datetime import datetime, timedelta
 
 
 class Users:

@@ -3,8 +3,8 @@
     width: 100vw;
     margin: 0;
 
+    border: 1px white solid;
     color: white;
-    font-size: 18vh;
 
     display: flex;
     justify-content: center;
@@ -17,41 +17,18 @@
     margin: 2px;
     border: 1px purple solid;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-
     .album-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px deeppink solid;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .album {
-        padding: 2px;
-        margin: 2px;
-        border: 1px pink solid;
 
-        height: 30vh;
     }
 
     .info-container {
         padding: 2px;
         margin: 2px;
         border: 1px orange solid;
-
-        display: inline-flex;
-        align-items: center;
-
-        text-wrap: nowrap;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
-        scrollbar-width: none;
     }
 
     .name-container {

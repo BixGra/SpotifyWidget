@@ -3,7 +3,6 @@ import requests
 from src.tools.settings import client_id, client_encoded, redirect_uri
 from src.tools.utils import random_string, to_url
 
-
 authorization_base_url = "https://accounts.spotify.com/authorize"
 token_url = "https://accounts.spotify.com/api/token"
 current_song_url = "https://api.spotify.com/v1/me/player/currently-playing"
