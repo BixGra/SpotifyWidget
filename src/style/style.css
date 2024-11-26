@@ -135,7 +135,7 @@ a {
 }
 
 .token-item {
-    text-align: center;
+
 }
 
 .main-tuto {
@@ -160,6 +160,43 @@ a {
 .token-item, .tuto-item {
     padding: 30px;
     background-color: #212121;
+}
+
+.main-item-box {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    background-color: #161616;
+    padding: 15px;
+    margin: 15px;
+}
+
+.main-item-box-text {
+
+}
+
+.main-item-box-button {
+    cursor: pointer;
+    background: none;
+    padding: 5px;
+    transition: background-color 0.3s;
+}
+
+.main-item-box-button:hover {
+    background-color: #212121;
+    transition: background-color 0.3s;
+}
+
+.main-item-box-button:active {
+    background-color: #404040;
+    transition: background-color 0.1s;
+}
+
+.main-item-box-image {
+    height: 24px;
+    width: 24px;
 }
 
 .main-gallery {

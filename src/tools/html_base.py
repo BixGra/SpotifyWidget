@@ -28,7 +28,6 @@ IFRAME = f"""
 PROD = f"""
 <!doctype html>
 <html lang="en">
-<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="15">
 <head>
 <title>Sandbix - Spotify Widget</title>
@@ -88,7 +87,16 @@ MAIN = f"""{HEADER}
                     Your widget URL
                 </div>
                 <div class="token-item small-text rounded">
-                    {base_url}/current-song/{{token}}
+                    Copy this address and paste it in a new <span class="bold-text">Browser Source</span> in OBS.
+                    <div class="main-item-box rounded">
+                        <div id="copy-html" class="main-item-box-text">
+                            {base_url}/current-song/{{token}}
+                        </div>
+                        <div id="button-html" class="main-item-box-button rounded" onClick="copy('copy-html', 'button-html', 'main-item-box-button rounded');">
+                            <img class="main-item-box-image" src="{base_url}/src/img/copy.png" alt="copy.png"/>
+                        </div>
+                    </div>
+                    You can choose your favorite design and add the CSS code inside the <span class="bold-text">Custom CSS</span> field.
                 </div>
             </div>
             <div class="main-tuto">
@@ -96,12 +104,16 @@ MAIN = f"""{HEADER}
                     How to use SpotifyWidget
                 </div>
                 <div class="tuto-item small-text rounded">
-                    Copy this address and paste it in a new <span class="bold-text">Browser Source</span> in OBS.
-                    <br><br>
-                    Then chose your favorite design and add the CSS code inside the <span class="bold-text">Custom CSS</span> field.
-                    <br><br><br><br>
-                    If you want to play with the data, you can get the <span class="bold-text">JSON</span> output 
-                    on <a href="{base_url}/current-song/{{token}}/json" target="_blank"><span class="bold-text yellow-text">THIS</span></a> url.
+                    If you'd like to interact with the data, you can get the <span class="bold-text">JSON output</span>
+                    on this url.
+                    <div class="main-item-box rounded">
+                        <div id="copy-json" class="main-item-box-text">
+                            {base_url}/current-song/{{token}}/json
+                        </div>
+                        <div id="button-json" class="main-item-box-button rounded" onClick="copy('copy-json', 'button-json', 'main-item-box-button rounded');">
+                            <img class="main-item-box-image" src="{base_url}/src/img/copy.png" alt="copy.png"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -216,7 +228,8 @@ MAIN = f"""{HEADER}
             </div>
         </div>
     </div>
-</div>"""
+</div>
+<script src="{base_url}/src/script/copy.js"></script>"""
 
 EXAMPLE = f"""{HEADER}
 <div class="main-zoom rounded">
@@ -229,7 +242,7 @@ EXAMPLE = f"""{HEADER}
         <div class="zoom-bar-text bold-text body-text">
             Copy this CSS and paste it in your OBS source, in the <span class="white-text">custom CSS</span> field
         </div>
-        <div id="copy-button" class="zoom-bar-button bold-text rounded" onClick="copy();">
+        <div id="button-css" class="zoom-bar-button bold-text rounded" onClick="copy('copy-css', 'button-css', 'zoom-bar-button-clicked bold-text rounded');">
             Copy
         </div>
     </div>
@@ -237,8 +250,7 @@ EXAMPLE = f"""{HEADER}
         {{css}}
     </div>
 </div>
-<script src="{base_url}/src/script/copy.js"></script>
-"""
+<script src="{base_url}/src/script/copy.js"></script>"""
 
 SONG = f"""<div id="song">
     <div class="album-container">
@@ -249,5 +261,4 @@ SONG = f"""<div id="song">
         <div class="separator-container"><p class="separator">-</p></div>
         <div class="artists-container"><p class="artists">{{artists}}</p></div>
     </div>
-</div>
-"""
+</div>"""

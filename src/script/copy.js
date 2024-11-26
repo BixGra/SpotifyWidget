@@ -1,7 +1,9 @@
-function copy() {
-    let element = document.getElementById("copy-css");
+function copy(elementId, buttonId, new_class) {
+    let element = document.getElementById(elementId);
     navigator.clipboard.writeText(element.innerText);
-    element = document.getElementById("copy-button");
-    element.innerText = "Copied !";
-    element.setAttribute("class", "zoom-bar-button-clicked bold-text rounded");
+    element = document.getElementById(buttonId);
+    if (element.innerText === "Copy") {
+        element.innerText = "Copied !";
+    }
+    element.setAttribute("class", new_class);
 }
