@@ -3,6 +3,8 @@
     width: 100vw;
     margin: 0;
 
+    background: none;
+
     color: white;
     font-size: 18vh;
 
@@ -21,73 +23,73 @@
     justify-content: center;
     align-items: center;
     width: 90%;
+}
 
-    .album-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px deeppink solid;
+.album-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px deeppink solid;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    .album {
-        padding: 2px;
-        margin: 2px;
-        border: 1px pink solid;
+.album {
+    padding: 2px;
+    margin: 2px;
+    border: 1px pink solid;
 
-        height: 30vh;
-    }
+    height: 30vh;
+}
 
-    .info-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px orange solid;
+.info-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px orange solid;
 
-        display: inline-flex;
-        align-items: center;
+    display: inline-flex;
+    align-items: center;
 
-        text-wrap: nowrap;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
-        scrollbar-width: none;
-    }
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
 
-    .name-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px green solid;
-    }
+.name-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px green solid;
+}
 
-    .name {
-        padding: 2px;
-        margin: 2px;
-        border: 1px lime solid;
-    }
+.name {
+    padding: 2px;
+    margin: 2px;
+    border: 1px lime solid;
+}
 
-    .separator-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px red solid;
-    }
+.separator-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px red solid;
+}
 
-    .separator {
-        padding: 2px;
-        margin: 2px;
-        border: 1px lightcoral solid;
-    }
+.separator {
+    padding: 2px;
+    margin: 2px;
+    border: 1px lightcoral solid;
+}
 
-    .artists-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px blue solid;
-    }
+.artists-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px blue solid;
+}
 
-    .artists {
-        padding: 2px;
-        margin: 2px;
-        border: 1px cyan solid;
-    }
+.artists {
+    padding: 2px;
+    margin: 2px;
+    border: 1px cyan solid;
 }
 

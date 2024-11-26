@@ -15,7 +15,6 @@
 }
 
 #song {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,50 +42,50 @@
     animation: pulsate 1s infinite alternate;
 
     overflow: hidden;
+}
 
-    .album-container {
-        display: none;
-    }
+.album-container {
+    display: none;
+}
 
-    .album {
+.album {
 
-    }
+}
 
-    .info-container {
-        display: inline-flex;
-        align-items: center;
+.info-container {
+    display: inline-flex;
+    align-items: center;
 
-        padding: 0 40vh 0 40vh;
+    padding: 0 40vh 0 40vh;
 
-        text-wrap: nowrap;
-        overflow-x: scroll;
-        scrollbar-width: none;
-    }
+    text-wrap: nowrap;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
 
-    .name-container {
+.name-container {
 
-    }
+}
 
-    .name {
-        margin: 2px;
-    }
+.name {
+    margin: 2px;
+}
 
-    .separator-container {
+.separator-container {
 
-    }
+}
 
-    .separator {
-        padding: 0 5vh 0 5vh;
-        margin: 2px;
-    }
+.separator {
+    padding: 0 5vh 0 5vh;
+    margin: 2px;
+}
 
-    .artists-container {
+.artists-container {
 
-    }
+}
 
-    .artists {
-        margin: 2px;
-    }
+.artists {
+    margin: 2px;
 }
 
 @keyframes pulsate {
