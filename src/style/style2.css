@@ -12,6 +12,8 @@
     font-family: 'Vibur', sans-serif;
     font-size: 18vh;
     color: #ffffff;
+
+    background: rgba(0, 0, 0, 0);
 }
 
 #song {
