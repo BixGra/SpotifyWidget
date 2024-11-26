@@ -246,9 +246,7 @@ EXAMPLE = f"""{HEADER}
             Copy
         </div>
     </div>
-    <div id="copy-css" class="zoom-text small-text rounded">
-        {{css}}
-    </div>
+    <div id="copy-css" class="zoom-text small-text rounded">{{css}}</div>
 </div>
 <script src="{base_url}/src/script/copy.js"></script>"""
 

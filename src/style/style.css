@@ -387,7 +387,11 @@ iframe {
 .zoom-bar-button-clicked:hover {
     background-color: #404040;
     color: #fede64;
-    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.zoom-bar-button-clicked:active {
+    background-color: #606060;
     transition: background-color 0.3s;
 }
 
