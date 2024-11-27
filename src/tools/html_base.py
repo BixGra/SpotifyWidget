@@ -22,7 +22,6 @@ IFRAME = f"""
 <title>Sandbix - Spotify Widget</title>
 </head>
 <body id="prod" style="background-color: #161616;">{{body}}</body>
-<script src="{base_url}/src/script/script.js"></script>
 </html>"""
 
 PROD = f"""
@@ -121,7 +120,7 @@ MAIN = f"""{HEADER}
             <div class="gallery-item one rounded">
                 <div class="gallery-widget rounded">
                     <div class="frame">
-                        <iframe src="{base_url}/examples/iframe/{{gallery_1_id}}"></iframe>
+                        <iframe src="{base_url}/examples/{{gallery_1_id}}/iframe"></iframe>
                     </div>
                 </div>
                 <div class="gallery-bar">
@@ -139,7 +138,7 @@ MAIN = f"""{HEADER}
             <div class="gallery-item two rounded">
                 <div class="gallery-widget rounded">
                     <div class="frame">
-                        <iframe src="{base_url}/examples/iframe/{{gallery_2_id}}"></iframe>
+                        <iframe src="{base_url}/examples/{{gallery_2_id}}/iframe"></iframe>
                     </div>
                 </div>
                 <div class="gallery-bar">
@@ -157,7 +156,7 @@ MAIN = f"""{HEADER}
             <div class="gallery-item three rounded">
                 <div class="gallery-widget rounded">
                     <div class="frame">
-                        <iframe src="{base_url}/examples/iframe/{{gallery_3_id}}"></iframe>
+                        <iframe src="{base_url}/examples/{{gallery_3_id}}/iframe"></iframe>
                     </div>
                 </div>
                 <div class="gallery-bar">
@@ -175,7 +174,7 @@ MAIN = f"""{HEADER}
             <div class="gallery-item four rounded">
                 <div class="gallery-widget rounded">
                     <div class="frame">
-                        <iframe src="{base_url}/examples/iframe/{{gallery_4_id}}"></iframe>
+                        <iframe src="{base_url}/examples/{{gallery_4_id}}/iframe"></iframe>
                     </div>
                 </div>
                 <div class="gallery-bar">
@@ -193,7 +192,7 @@ MAIN = f"""{HEADER}
             <div class="gallery-item five rounded">
                 <div class="gallery-widget rounded">
                     <div class="frame">
-                        <iframe src="{base_url}/examples/iframe/{{gallery_5_id}}"></iframe>
+                        <iframe src="{base_url}/examples/{{gallery_5_id}}/iframe"></iframe>
                     </div>
                 </div>
                 <div class="gallery-bar">
@@ -211,7 +210,7 @@ MAIN = f"""{HEADER}
             <div class="gallery-item six rounded">
                 <div class="gallery-widget rounded">
                     <div class="frame">
-                        <iframe src="{base_url}/examples/iframe/{{gallery_6_id}}"></iframe>
+                        <iframe src="{base_url}/examples/{{gallery_6_id}}/iframe"></iframe>
                     </div>
                 </div>
                 <div class="gallery-bar">
@@ -235,7 +234,7 @@ EXAMPLE = f"""{HEADER}
 <div class="main-zoom rounded">
     <div class="zoom-widget">
         <div class="zoom-frame frame rounded">
-            <iframe src="{base_url}/examples/iframe/{{index}}"></iframe>
+            <iframe src="{base_url}/examples/{{index}}/iframe"></iframe>
         </div>
     </div>
     <div class="zoom-bar">
@@ -247,8 +246,7 @@ EXAMPLE = f"""{HEADER}
         </div>
     </div>
     <div id="copy-css" class="zoom-text small-text rounded">{{css}}</div>
-</div>
-<script src="{base_url}/src/script/copy.js"></script>"""
+</div>"""
 
 SONG = f"""<div id="song">
     <div class="album-container">

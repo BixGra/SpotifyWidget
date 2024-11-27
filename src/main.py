@@ -57,7 +57,7 @@ async def get_method(index: int):
     return response
 
 
-@app.get("/examples/iframe/{index}")
+@app.get("/examples/{index}/iframe")
 async def get_method(index: int):
     example = render_iframe(index)
     response = HTMLResponse(example)
