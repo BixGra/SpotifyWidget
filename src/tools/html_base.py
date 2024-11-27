@@ -255,8 +255,10 @@ SONG = f"""<div id="song">
         <img class="album" src="{{album}}"/>
     </div>
     <div class="info-container">
-        <div class="name-container"><p class="name">{{name}}</p></div>
-        <div class="separator-container"><p class="separator">-</p></div>
-        <div class="artists-container"><p class="artists">{{artists}}</p></div>
+        <div class="scroll-container">
+            <div class="name-container"><p class="name">{{name}}</p></div>
+            <div class="separator-container"><p class="separator">-</p></div>
+            <div class="artists-container"><p class="artists">{{artists}}</p></div>
+        </div>
     </div>
 </div>"""

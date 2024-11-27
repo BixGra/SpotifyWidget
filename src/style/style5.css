@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
 #prod {
     height: 100vh;
     width: 100vw;
     margin: 0;
 
-    color: white;
-    font-size: 18vh;
+    font-family: "Jua", sans-serif;
+    color: #ff7338;
+    font-size: 20vh;
+    font-weight: 400;
 
     display: flex;
     justify-content: center;
@@ -16,18 +20,21 @@
 #song {
     padding: 2px;
     margin: 2px;
-    border: 1px purple solid;
+    border: 2vh #DCCD86 solid;
+    border-radius: 5vh;
+    background-color: #FAF4DA;
 
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    width: 90%;
+
+    height: 90vh;
+    width: 96vw;
 }
 
 .album-container {
-    padding: 2px;
+    padding: 20vh;
     margin: 2px;
-    border: 1px deeppink solid;
 
     display: flex;
     justify-content: center;
@@ -35,60 +42,82 @@
 }
 
 .album {
-    padding: 2px;
-    margin: 2px;
-    border: 1px pink solid;
-
     height: 30vh;
+    content: url("https://sandbix.fr/spotifywidget/src/img/gomar_melade.png");
 }
 
 .info-container {
     padding: 2px;
     margin: 2px;
-    border: 1px orange solid;
 
-    display: inline-flex;
+    display: flex;
+    justify-content: left;
     align-items: center;
 
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-    scrollbar-width: none;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.scroll-container {
+    padding: 2px;
+    margin: 2px;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .name-container {
     padding: 2px;
     margin: 2px;
-    border: 1px green solid;
+
+    display: flex;
 }
 
 .name {
     padding: 2px;
     margin: 2px;
-    border: 1px lime solid;
+
+    animation: scroll 10s infinite alternate;
 }
 
 .separator-container {
-    padding: 2px;
-    margin: 2px;
-    border: 1px red solid;
+    display: none;
 }
 
 .separator {
-    padding: 2px;
-    margin: 2px;
-    border: 1px lightcoral solid;
 }
 
 .artists-container {
     padding: 2px;
     margin: 2px;
-    border: 1px blue solid;
+
+    display: flex;
+
+    text-transform: uppercase;
+    font-size: 12vh;
 }
 
 .artists {
     padding: 2px;
     margin: 2px;
-    border: 1px cyan solid;
+
+    animation: scroll 10s infinite alternate;
 }
 
+@keyframes scroll {
+    0% {
+        translate: 0 0;
+    }
+
+    10% {
+        translate: 0 0;
+    }
+
+    90% {
+        translate: min(0px, calc(-100% + calc(100vw - 90vh))) 0;
+    }
+
+    100% {
+        translate: min(0px, calc(-100% + calc(100vw - 90vh))) 0;
+    }
+}

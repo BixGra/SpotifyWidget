@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vibur&display=swap');
 
 #prod {
     height: 100vh;
     width: 100vw;
     margin: 0;
 
-    font-family: "Titillium Web", sans-serif;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 44vh;
+    font-family: 'Vibur', sans-serif;
+    color: #000000;
+    font-size: 40vh;
+    font-weight: 550;
 
     display: flex;
     justify-content: center;
@@ -18,10 +18,14 @@
 }
 
 #song {
+    padding: 2px;
+    margin: 2px;
+
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+
     width: calc(100vw - 8px);
 }
 
@@ -54,8 +58,16 @@
 }
 
 .scroll-container {
+    padding: 2px;
+    margin: 2px;
+
     display: flex;
     flex-direction: row;
+
+    text-shadow:
+        0 0 2vh #ffffff,
+        0 0 3vh #ffffff,
+        0 0 7vh #ffffff;
 
     animation: scroll 10s infinite alternate;
 }

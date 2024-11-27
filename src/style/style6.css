@@ -3,10 +3,8 @@
     width: 100vw;
     margin: 0;
 
-    background: none;
-
-    color: white;
-    font-size: 18vh;
+    color: #ffffff;
+    font-size: 40vh;
 
     display: flex;
     justify-content: center;
@@ -21,9 +19,11 @@
     border: 1px purple solid;
 
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-    width: 90%;
+
+    width: calc(100vw - 8px);
 }
 
 .album-container {
@@ -41,7 +41,7 @@
     margin: 2px;
     border: 1px pink solid;
 
-    height: 30vh;
+    height: calc(100vh - 28px);
 }
 
 .info-container {
@@ -49,13 +49,23 @@
     margin: 2px;
     border: 1px orange solid;
 
-    display: inline-flex;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-    scrollbar-width: none;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.scroll-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px yellow solid;
+
+    display: flex;
+    flex-direction: row;
+
+    animation: scroll 10s infinite alternate;
 }
 
 .name-container {
@@ -94,3 +104,20 @@
     border: 1px cyan solid;
 }
 
+@keyframes scroll {
+    0% {
+        translate: 0 0;
+    }
+
+    10% {
+        translate: 0 0;
+    }
+
+    90% {
+        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+    }
+
+    100% {
+        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+    }
+}

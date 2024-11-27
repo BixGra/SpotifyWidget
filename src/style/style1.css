@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 #prod {
     height: 100vh;
     width: 100vw;
     margin: 0;
 
-    color: white;
-    font-size: 18vh;
+    font-family: "Quicksand", sans-serif;
+    color: #ffffff;
+    font-size: 40vh;
+    font-weight: 800;
 
     display: flex;
     justify-content: center;
@@ -14,20 +18,20 @@
 }
 
 #song {
-    padding: 2px;
-    margin: 2px;
-    border: 1px purple solid;
-
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+
+    overflow: hidden;
+
+    background-color: rgba(256, 256, 256, .3);
+    height: calc(100vh - 8px);
+    width: calc(100vw - 8px);
 }
 
 .album-container {
     padding: 2px;
     margin: 2px;
-    border: 1px deeppink solid;
 
     display: flex;
     justify-content: center;
@@ -37,58 +41,76 @@
 .album {
     padding: 2px;
     margin: 2px;
-    border: 1px pink solid;
 
-    height: 30vh;
+    height: calc(100vh - 28px);
 }
 
 .info-container {
     padding: 2px;
     margin: 2px;
-    border: 1px orange solid;
 
-    display: inline-flex;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-    scrollbar-width: none;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.scroll-container {
+    padding: 2px;
+    margin: 2px;
+
+    display: flex;
+    flex-direction: row;
+
+    animation: scroll 10s infinite alternate;
 }
 
 .name-container {
     padding: 2px;
     margin: 2px;
-    border: 1px green solid;
 }
 
 .name {
     padding: 2px;
     margin: 2px;
-    border: 1px lime solid;
 }
 
 .separator-container {
     padding: 2px;
     margin: 2px;
-    border: 1px red solid;
 }
 
 .separator {
     padding: 2px;
     margin: 2px;
-    border: 1px lightcoral solid;
 }
 
 .artists-container {
     padding: 2px;
     margin: 2px;
-    border: 1px blue solid;
 }
 
 .artists {
     padding: 2px;
     margin: 2px;
-    border: 1px cyan solid;
 }
 
+@keyframes scroll {
+    0% {
+        translate: 0 0;
+    }
+
+    10% {
+        translate: 0 0;
+    }
+
+    90% {
+        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+    }
+
+    100% {
+        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+    }
+}

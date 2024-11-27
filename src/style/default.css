@@ -3,13 +3,14 @@
     width: 100vw;
     margin: 0;
 
-    border: 1px white solid;
-    color: white;
+    color: #ffffff;
+    font-size: 40vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
+    background: rgba(0, 0, 0, 0);
 }
 
 #song {
@@ -17,54 +18,106 @@
     margin: 2px;
     border: 1px purple solid;
 
-    .album-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 
-    }
-
-    .album {
-
-    }
-
-    .info-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px orange solid;
-    }
-
-    .name-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px green solid;
-    }
-
-    .name {
-        padding: 2px;
-        margin: 2px;
-        border: 1px lime solid;
-    }
-
-    .separator-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px red solid;
-    }
-
-    .separator {
-        padding: 2px;
-        margin: 2px;
-        border: 1px lightcoral solid;
-    }
-
-    .artists-container {
-        padding: 2px;
-        margin: 2px;
-        border: 1px blue solid;
-    }
-
-    .artists {
-        padding: 2px;
-        margin: 2px;
-        border: 1px cyan solid;
-    }
+    width: calc(100vw - 8px);
 }
 
+.album-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px deeppink solid;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.album {
+    padding: 2px;
+    margin: 2px;
+    border: 1px pink solid;
+
+    height: calc(100vh - 28px);
+}
+
+.info-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px orange solid;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.scroll-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px yellow solid;
+
+    display: flex;
+    flex-direction: row;
+
+    animation: scroll 10s infinite alternate;
+}
+
+.name-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px green solid;
+}
+
+.name {
+    padding: 2px;
+    margin: 2px;
+    border: 1px lime solid;
+}
+
+.separator-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px red solid;
+}
+
+.separator {
+    padding: 2px;
+    margin: 2px;
+    border: 1px lightcoral solid;
+}
+
+.artists-container {
+    padding: 2px;
+    margin: 2px;
+    border: 1px blue solid;
+}
+
+.artists {
+    padding: 2px;
+    margin: 2px;
+    border: 1px cyan solid;
+}
+
+@keyframes scroll {
+    0% {
+        translate: 0 0;
+    }
+
+    10% {
+        translate: 0 0;
+    }
+
+    90% {
+        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+    }
+
+    100% {
+        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+    }
+}
