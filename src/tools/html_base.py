@@ -32,7 +32,6 @@ PROD = f"""
 <title>Sandbix - Spotify Widget</title>
 </head>
 <body id="prod">{{body}}</body>
-<script src="{base_url}/src/script/script.js"></script>
 </html>"""
 
 CONNECT = f"""<div class="main-connect">
@@ -246,7 +245,8 @@ EXAMPLE = f"""{HEADER}
         </div>
     </div>
     <div id="copy-css" class="zoom-text small-text rounded">{{css}}</div>
-</div>"""
+</div>
+<script src="{base_url}/src/script/copy.js"></script>"""
 
 SONG = f"""<div id="song">
     <div class="album-container">

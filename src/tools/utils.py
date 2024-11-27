@@ -21,7 +21,7 @@ names = [
     "Pink neon",
     "3D Effect",
     "Classic",
-    "Handwritten",
+    "Sweet",
     "Template",
 ]
 
