@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+
 #prod {
     height: 100vh;
     width: 100vw;
     margin: 0;
 
-    color: #ffffff;
+    font-family: "Cedarville Cursive", cursive;
+    color: #000000;
     font-size: 40vh;
+    line-height: 50vh;
+    font-weight: 600;
 
     display: flex;
     justify-content: center;
@@ -16,20 +21,19 @@
 #song {
     padding: 2px;
     margin: 2px;
-    border: 1px purple solid;
 
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 
+    height: calc(100vh - 8px);
     width: calc(100vw - 8px);
 }
 
 .album-container {
     padding: 2px;
     margin: 2px;
-    border: 1px deeppink solid;
 
     display: flex;
     justify-content: center;
@@ -39,15 +43,13 @@
 .album {
     padding: 2px;
     margin: 2px;
-    border: 1px pink solid;
 
-    height: calc(100vh - 28px);
+    height: calc(100vh - 20px);
 }
 
 .info-container {
     padding: 2px;
     margin: 2px;
-    border: 1px orange solid;
 
     display: flex;
     justify-content: flex-start;
@@ -60,10 +62,14 @@
 .scroll-container {
     padding: 2px;
     margin: 2px;
-    border: 1px yellow solid;
 
     display: flex;
     flex-direction: row;
+
+    text-shadow:
+        0 0 2vh #ffffff,
+        0 0 3vh #ffffff,
+        0 0 7vh #ffffff;
 
     animation: scroll 10s infinite alternate;
 }
@@ -71,53 +77,47 @@
 .name-container {
     padding: 2px;
     margin: 2px;
-    border: 1px green solid;
 }
 
 .name {
     padding: 2px;
     margin: 2px;
-    border: 1px lime solid;
 }
 
 .separator-container {
-    padding: 2px;
+    padding: 2px 20vh 2px 20vh;
     margin: 2px;
-    border: 1px red solid;
 }
 
 .separator {
     padding: 2px;
     margin: 2px;
-    border: 1px lightcoral solid;
 }
 
 .artists-container {
     padding: 2px;
     margin: 2px;
-    border: 1px blue solid;
 }
 
 .artists {
     padding: 2px;
     margin: 2px;
-    border: 1px cyan solid;
 }
 
 @keyframes scroll {
     0% {
-        translate: 0 0;
+        transform: translate(0, 0);
     }
 
     10% {
-        translate: 0 0;
+        transform: translate(0, 0);
     }
 
     90% {
-        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+        transform: translate(min(0px, calc(-100% + calc(100vw - calc(100vh + 20px)))), 0);
     }
 
     100% {
-        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+        transform: translate(min(0px, calc(-100% + calc(100vw - calc(100vh + 20px)))), 0);
     }
 }

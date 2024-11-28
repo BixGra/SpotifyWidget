@@ -269,6 +269,8 @@ a {
 
 iframe {
     border: unset;
+    height: 4vw;
+    width: 16vw;
 }
 
 .gallery-bar {

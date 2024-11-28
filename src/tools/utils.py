@@ -17,12 +17,12 @@ songs = [
 ]
 
 names = [
-    "LexiTVz",
+    "Glass",
     "Pink neon",
     "3D Effect",
     "Classic",
     "Sweet",
-    "Template",
+    "Handwriting",
 ]
 
 

@@ -126,10 +126,18 @@
 
 @keyframes scroll {
     0% {
-        translate: max(0px, calc(50% - 35vw)) 0;
+        transform: translate(max(0px, calc(50% - 35vw)), 0);
+    }
+
+    10% {
+        transform: translate(max(0px, calc(50% - 35vw)), 0);
+    }
+
+    90% {
+        transform: translate(min(0px, calc(-50% + 35vw)), 0);
     }
 
     100% {
-        translate: min(0px, calc(-50% + 35vw)) 0;
+        transform: translate(min(0px, calc(-50% + 35vw)), 0);
     }
 }

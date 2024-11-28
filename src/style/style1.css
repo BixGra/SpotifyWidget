@@ -99,18 +99,18 @@
 
 @keyframes scroll {
     0% {
-        translate: 0 0;
+        transform: translate(0, 0);
     }
 
     10% {
-        translate: 0 0;
+        transform: translate(0, 0);
     }
 
     90% {
-        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+        transform: translate(min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))), 0);
     }
 
     100% {
-        translate: min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))) 0;
+        transform: translate(min(0px, calc(-100% + calc(100vw - calc(100vh + 16px)))), 0);
     }
 }

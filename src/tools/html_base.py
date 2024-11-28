@@ -27,7 +27,7 @@ IFRAME = f"""
 PROD = f"""
 <!doctype html>
 <html lang="en">
-<meta http-equiv="refresh" content="15">
+<meta http-equiv="refresh" content="20">
 <head>
 <title>Sandbix - Spotify Widget</title>
 </head>
@@ -59,7 +59,7 @@ HEADER = f"""<div class="header">
             </div>
         </div>
     </a>
-    <a href="{base_url}/about">
+    <a href="https://sandbix.fr/">
         <div class="header-right">
             <div class="header-about bold-text body-text">
                 About
