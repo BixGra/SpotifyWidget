@@ -7,7 +7,7 @@ services:
     volumes:
       - ~/workspace/data/spotifywidget:/etc/SpotifyWidget/src/data
     networks:
-      - mynet
+      - sandbixproxy_mynet
     environment:
       - SPOTIFY_BASE_URL=${SPOTIFY_BASE_URL}
       - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
