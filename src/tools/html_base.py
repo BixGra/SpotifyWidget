@@ -75,7 +75,7 @@ MAIN = f"""{HEADER}
             Find inspiration and customize your <span class="white-text">Spotify widget</span>
         </div>
         <div class="main-subtitle small-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Customize your Spotify player for your stream overlay with our pre-made styles, or do it yourself for endless possibilities. 
         </div>
     </div>
     <div class="main-bottom">
