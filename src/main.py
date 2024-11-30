@@ -9,8 +9,7 @@ from src.tools.spotify import spotify
 from src.tools.utils import render_connect, render_main, render_iframe, render_example, render_song, render_current_song
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(spotify.refresh, "interval", minutes=30, id="refresh_tokens")
-scheduler.add_job(spotify.database.backup, "interval", hours=24, id="backup")
+scheduler.add_job(spotify.refresh, "interval", seconds=30, id="refresh_tokens")
 scheduler.start()
 
 

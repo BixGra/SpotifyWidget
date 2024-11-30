@@ -5,7 +5,7 @@ from src.tools.utils import random_string
 
 class Database:
     def __init__(self):
-        self.con = sl.connect("./src/data/spotifywidget.db")
+        self.con = sl.connect("./src/data/spotifywidget.db", check_same_thread=False)
 
         with self.con:
             self.con.execute("""
@@ -100,8 +100,4 @@ class Database:
             """
         with self.con:
             cur = self.con.cursor()
-            cur.execute(query, refreshed_tokens)
-
-
-    def backup(self):
-        pass
+            cur.executemany(query, refreshed_tokens)
