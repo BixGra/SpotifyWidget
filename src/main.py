@@ -21,9 +21,7 @@ app.mount("/src", StaticFiles(directory="src"))
 @app.get("/")
 async def get_method(request: Request):
     user_id = request.cookies.get("spotify_user")
-    if spotify.has_expired(user_id):
-        response = HTMLResponse(render_connect())
-    elif spotify.database.exists_id(user_id):
+    if spotify.database.exists_id(user_id) and not spotify.has_expired(user_id):
         response = HTMLResponse(render_main(user_id))
     else:
         response = HTMLResponse(render_connect())

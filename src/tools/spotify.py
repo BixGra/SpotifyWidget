@@ -91,7 +91,7 @@ class SpotifyClient:
                 "Authorization": f"Bearer {token}",
             },
         )
-        print(response.json())
+        return "error" in response.json()
 
     @staticmethod
     def get_current_song(token: str) -> dict:
