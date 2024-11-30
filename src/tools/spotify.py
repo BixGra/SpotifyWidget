@@ -1,19 +1,26 @@
 import requests
 
+from src.tools.database import Database
 from src.tools.settings import client_id, client_encoded, redirect_uri, base_url
 from src.tools.utils import random_string, to_url
 
 authorization_base_url = "https://accounts.spotify.com/authorize"
 token_url = "https://accounts.spotify.com/api/token"
 current_song_url = "https://api.spotify.com/v1/me/player/currently-playing"
+email_url = "https://api.spotify.com/v1/me/"
 
-scope = "user-read-currently-playing"
+scope = " ".join([
+    "user-read-email",
+    "user-read-currently-playing"
+])
 response_type = "code"
 
 class SpotifyClient:
     def __init__(self):
         self.state = random_string(16)
+        self.database = Database()
 
+    # REQUESTS
     def connect(self) -> str:
         authorization_url = authorization_base_url + to_url(
             {
@@ -41,24 +48,40 @@ class SpotifyClient:
                 }
             )
             data = response.json()
-            return data["access_token"], data["refresh_token"]
+            token = data["access_token"]
+            refresh_token = data["refresh_token"]
+            response = requests.get(
+                email_url,
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {token}",
+                },
+            )
+            data = response.json()
+            email = data["email"]
+            user_id = self.database.create_user(email, token, refresh_token)
+            return user_id
         else:
             raise Exception("Error with states, please contact the service administrator.")
 
-    @staticmethod
-    def refresh(refresh_token: str) -> str:
-        response = requests.post(
-            token_url,
-            headers={
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Authorization": f"Basic {client_encoded}",
-            },
-            data={
-                "refresh_token": refresh_token,
-                "grant_type": "refresh_token",
-            }
-        )
-        return response.json()["access_token"]
+    def refresh(self) -> None:
+        refresh_tokens = self.database.get_refresh_tokens()
+        refreshed_tokens = []
+        for refresh_token, user_id in refresh_tokens:
+            response = requests.post(
+                token_url,
+                headers={
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": f"Basic {client_encoded}",
+                },
+                data={
+                    "refresh_token": refresh_token,
+                    "grant_type": "refresh_token",
+                }
+            )
+            refreshed_tokens.append((response.json()["access_token"], user_id))
+        self.database.set_refreshed_tokens(refreshed_tokens)
+
 
     @staticmethod
     def get_current_song(token: str) -> dict:

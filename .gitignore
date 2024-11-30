@@ -1,6 +1,7 @@
 # Custom
 .idea/
 dev/
+*.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
