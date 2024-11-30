@@ -4,8 +4,14 @@ services:
   spotifywidget:
     image: spotifywidget:latest
     container_name: spotifywidget
+    volumes:
+      - ~/workspace/data/spotifywidget:/etc/SpotifyWidget/src/data
     networks:
-      - sandbixproxy_mynet
+      - mynet
+    environment:
+      - SPOTIFY_BASE_URL=${SPOTIFY_BASE_URL}
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
 
 networks:
   sandbixproxy_mynet:
