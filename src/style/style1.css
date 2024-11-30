@@ -19,7 +19,8 @@
 
 #song {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
 
     overflow: hidden;
