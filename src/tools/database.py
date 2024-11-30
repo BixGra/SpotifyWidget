@@ -50,7 +50,7 @@ class Database:
             if user_id:= self.exists_mail(mail):
                 cur.execute(f"""
                     UPDATE SPOTIFYWIDGET
-                    SET token = "{token}", refresh_token = "{refresh_token}",
+                    SET token = "{token}", refresh_token = "{refresh_token}"
                     WHERE id = "{user_id}";
                 """)
                 return user_id
