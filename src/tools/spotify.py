@@ -82,6 +82,16 @@ class SpotifyClient:
             refreshed_tokens.append((response.json()["access_token"], user_id))
         self.database.set_refreshed_tokens(refreshed_tokens)
 
+    def has_expired(self, user_id: str) -> bool:
+        token = self.database.get_token(user_id)
+        response = requests.get(
+            email_url,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {token}",
+            },
+        )
+        print(response.json())
 
     @staticmethod
     def get_current_song(token: str) -> dict:
