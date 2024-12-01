@@ -48,6 +48,15 @@ async def get_method(error: str = None, code: str = None, state: str = ""):
     return response
 
 
+@app.get("/disconnect")
+async def get_method(request: Request):
+    user_id = request.cookies.get("spotify_user")
+    spotify.database.delete_user(user_id)
+    response = RedirectResponse(base_url)
+    response.delete_cookie(key="spotify_user")
+    return response
+
+
 @app.get("/examples/{index}")
 async def get_method(index: int):
     example = render_example(index)

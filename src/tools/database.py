@@ -68,6 +68,14 @@ class Database:
                 """)
                 return user_id
 
+    def delete_user(self, user_id: str):
+        with self.con:
+            cur = self.con.cursor()
+            cur.execute(f"""
+                DELETE FROM SPOTIFYWIDGET
+                WHERE id = "{user_id}";
+            """)
+
 
     def get_token(self, user_id: str) -> [str|None]:
         if self.exists_id(user_id):

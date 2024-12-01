@@ -34,9 +34,15 @@ PROD = f"""
 <body id="prod">{{body}}</body>
 </html>"""
 
+FOOTER = f"""<div class="footer">
+    <div class="footer-text">
+        For more informations, head to <a class="bold-text" href="https://sandbix.fr/">this page</a>.
+    </div>
+</div>"""
+
 CONNECT = f"""<div class="main-connect">
     <div class="connect-title-1 body-text">
-        Spotify<span class="bold-text">Widget</span>
+        Sandbix - <span class="bold-text">Spotify</span> widget
     </div>
     <div class="connect-title-2 bold-text h1-text">
         Get started with us
@@ -49,20 +55,21 @@ CONNECT = f"""<div class="main-connect">
             Connect to Spotify
         </div>
     </a>
-</div>"""
+</div>
+{FOOTER}"""
 
 HEADER = f"""<div class="header">
     <a href="{base_url}/">
         <div class="header-left">
             <div class="header-title body-text">
-                Spotify<span class="bold-text">Widget</span>
+                Sandbix - <span class="bold-text">Spotify</span> widget
             </div>
         </div>
     </a>
-    <a href="https://sandbix.fr/">
+    <a href="{base_url}/disconnect">
         <div class="header-right">
             <div class="header-about bold-text body-text">
-                About
+                Disconnect
             </div>
         </div>
     </a>
@@ -72,7 +79,7 @@ MAIN = f"""{HEADER}
 <div class="main">
     <div class="main-top">
         <div class="main-title bold-text h1-text">
-            Find inspiration and customize your <span class="white-text">Spotify widget</span>
+            Find inspiration and customize your <span class="white-text">widget</span>
         </div>
         <div class="main-subtitle small-text">
             Customize your Spotify player for your stream overlay with our pre-made styles, or do it yourself for endless possibilities. 
@@ -99,7 +106,7 @@ MAIN = f"""{HEADER}
             </div>
             <div class="main-tuto">
                 <div class="tuto-title bold-text body-text">
-                    How to use SpotifyWidget
+                    How to use the widget?
                 </div>
                 <div class="tuto-item small-text rounded">
                     If you'd like to interact with the data, you can get the <span class="bold-text">JSON output</span>
@@ -227,6 +234,7 @@ MAIN = f"""{HEADER}
         </div>
     </div>
 </div>
+{FOOTER}
 <script src="{base_url}/src/script/copy.js"></script>"""
 
 EXAMPLE = f"""{HEADER}
@@ -246,6 +254,7 @@ EXAMPLE = f"""{HEADER}
     </div>
     <div id="copy-css" class="zoom-text small-text rounded">{{css}}</div>
 </div>
+{FOOTER}
 <script src="{base_url}/src/script/copy.js"></script>"""
 
 SONG = f"""<div id="song">

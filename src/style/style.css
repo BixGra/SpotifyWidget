@@ -440,3 +440,66 @@ iframe {
     transition: background-color 0.3s;
     color: #404040;
 }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 2vh 0 2vh 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media all and (max-width: 800px) {
+    body {
+        height: unset;
+        flex-direction: column;
+    }
+
+    .main {
+        padding: 100vh 0 90vh 0;
+    }
+
+    .main-bottom {
+        flex-direction: column;
+    }
+
+    .main-info {
+        width: unset;
+        margin: 5px 0 5px 0;
+    }
+
+    .token-item, .tuto-item {
+        padding: 30px 15px 30px 15px;
+    }
+
+    .main-item-box {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .main-gallery {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gallery-item {
+        height: 20vh;
+    }
+
+    .one, .two, .three, .four, .five, .six {
+        margin: 5px 0 5px 0;
+    }
+
+    iframe {
+        height: 6vh;
+        width: 30vh;
+    }
+
+    .footer {
+        padding: 1vh 0 1vh 0;
+        background-color: rgba(22, 22, 22, 0.9);
+    }
+}
