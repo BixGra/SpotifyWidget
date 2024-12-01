@@ -67,20 +67,19 @@ a {
 
 }
 
-.header-title {
-
-}
-
 .header-right {
-
-}
-
-.header-about {
-
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .header-left, .header-right {
     padding: 0 5vw 0 5vw;
+}
+
+.header-title {
+    padding: 0 10px 0 10px;
 }
 
 .main {
@@ -439,6 +438,18 @@ iframe {
     background-color: #fede64;
     transition: background-color 0.3s;
     color: #404040;
+}
+
+.main-about {
+    width: 40vw;
+}
+
+.about-title {
+    margin: 50px 0 30px 0;
+}
+
+.about-text {
+    margin-bottom: 10px;
 }
 
 .footer {

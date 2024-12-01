@@ -56,19 +56,31 @@ def render_iframe(index: int) -> str:
     return page
 
 
-def render_example(index: int) -> str:
+def render_example(connected:bool, index: int) -> str:
     css = ""
     if os.path.exists(f"./src/style/style{index}.css"):
         with open(f"./src/style/style{index}.css") as f:
             lines = f.readlines()
         css = "<br>".join(map(lambda x: x.rstrip("\n").replace("  ", "&nbsp;&nbsp;"), lines))
-    example = EXAMPLE.format(index=index, css=css)
+    if connected:
+        example = EXAMPLE.format(header_right="".join([ABOUT_BUTTON, DISCONNECT_BUTTON]), index=index, css=css)
+    else:
+        example = EXAMPLE.format(header_right=ABOUT_BUTTON, index=index, css=css)
     page = BASE.format(body=example)
     return page
 
 
 def render_connect() -> str:
     page = BASE.format(body=CONNECT)
+    return page
+
+
+def render_about(connected: bool) -> str:
+    if connected:
+        about = ABOUT.format(header_right="".join([CONTACT_BUTTON, DISCONNECT_BUTTON]))
+    else:
+        about = ABOUT.format(header_right=CONTACT_BUTTON)
+    page = BASE.format(body=about)
     return page
 
 

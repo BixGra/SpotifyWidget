@@ -13,6 +13,40 @@ BASE = f"""
 <body>{{body}}</body>
 </html>"""
 
+ABOUT_BUTTON = f"""
+<a href="{base_url}/about">
+    <div class="header-title bold-text body-text">
+        About
+    </div>
+</a>"""
+
+DISCONNECT_BUTTON = f"""
+<a href="{base_url}/disconnect">
+    <div class="header-title bold-text body-text">
+        Disconnect
+    </div>
+</a>"""
+
+CONTACT_BUTTON = f"""
+<a href="https://sandbix.fr/" target="_blank">
+    <div class="header-title bold-text body-text">
+        Contact us
+    </div>
+</a>"""
+
+HEADER = f"""<div class="header">
+    <div class="header-left">
+        <a href="{base_url}/">
+            <div class="header-title body-text">
+                Sandbix - <span class="bold-text">Spotify</span> widget
+            </div>
+        </a>
+    </div>
+    <div class="header-right">
+        {{header_right}}
+    </div>
+</div>"""
+
 IFRAME = f"""
 <!doctype html>
 <html lang="en">
@@ -34,13 +68,8 @@ PROD = f"""
 <body id="prod">{{body}}</body>
 </html>"""
 
-FOOTER = f"""<div class="footer">
-    <div class="footer-text">
-        For more informations, head to <a class="bold-text" href="https://sandbix.fr/">this page</a>.
-    </div>
-</div>"""
-
-CONNECT = f"""<div class="main-connect">
+CONNECT = f"""{HEADER.format(header_right=ABOUT_BUTTON)}
+<div class="main-connect">
     <div class="connect-title-1 body-text">
         Sandbix - <span class="bold-text">Spotify</span> widget
     </div>
@@ -55,27 +84,9 @@ CONNECT = f"""<div class="main-connect">
             Connect to Spotify
         </div>
     </a>
-</div>
-{FOOTER}"""
-
-HEADER = f"""<div class="header">
-    <a href="{base_url}/">
-        <div class="header-left">
-            <div class="header-title body-text">
-                Sandbix - <span class="bold-text">Spotify</span> widget
-            </div>
-        </div>
-    </a>
-    <a href="{base_url}/disconnect">
-        <div class="header-right">
-            <div class="header-about bold-text body-text">
-                Disconnect
-            </div>
-        </div>
-    </a>
 </div>"""
 
-MAIN = f"""{HEADER}
+MAIN = f"""{HEADER.format(header_right="".join([ABOUT_BUTTON, DISCONNECT_BUTTON]))}
 <div class="main">
     <div class="main-top">
         <div class="main-title bold-text h1-text">
@@ -234,8 +245,33 @@ MAIN = f"""{HEADER}
         </div>
     </div>
 </div>
-{FOOTER}
 <script src="{base_url}/src/script/copy.js"></script>"""
+
+ABOUT = f"""{HEADER}
+<div class="main-about">
+    <div class="about-title bold-text h1-text yellow-text">
+        What is this widget ?
+    </div>
+    <div class="about-text">
+        This app lets you customize your music player on your steram simply using custom CSS in your OBS browser source.
+    </div>
+    <div class="about-title bold-text h1-text yellow-text">
+        How it works
+    </div>
+    <div class="about-text">
+        · Completely free to use and ad free
+    </div>
+    <div class="about-text">
+        · Customize everything to match your own style
+    </div>
+    <div class="about-text">
+        · We only store your account's email to link it to your widget
+    </div>
+    <div class="about-text">
+        · We do not share any of your data
+    </div>
+    </div>
+</div>"""
 
 EXAMPLE = f"""{HEADER}
 <div class="main-zoom rounded">
@@ -254,7 +290,6 @@ EXAMPLE = f"""{HEADER}
     </div>
     <div id="copy-css" class="zoom-text small-text rounded">{{css}}</div>
 </div>
-{FOOTER}
 <script src="{base_url}/src/script/copy.js"></script>"""
 
 SONG = f"""<div id="song">

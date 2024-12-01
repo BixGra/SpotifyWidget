@@ -6,7 +6,8 @@ from starlette.staticfiles import StaticFiles
 
 from src.tools.settings import base_url
 from src.tools.spotify import spotify
-from src.tools.utils import render_connect, render_main, render_iframe, render_example, render_song, render_current_song
+from src.tools.utils import render_connect, render_main, render_iframe, render_example, render_song, \
+    render_current_song, render_about
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(spotify.refresh, "interval", minutes=30, id="refresh_tokens")
@@ -48,6 +49,14 @@ async def get_method(error: str = None, code: str = None, state: str = ""):
     return response
 
 
+@app.get("/about")
+async def get_method(request: Request):
+    user_id = request.cookies.get("spotify_user")
+    about = render_about(spotify.database.exists_id(user_id))
+    response = HTMLResponse(about)
+    return response
+
+
 @app.get("/disconnect")
 async def get_method(request: Request):
     user_id = request.cookies.get("spotify_user")
@@ -58,8 +67,9 @@ async def get_method(request: Request):
 
 
 @app.get("/examples/{index}")
-async def get_method(index: int):
-    example = render_example(index)
+async def get_method(request: Request, index: int):
+    user_id = request.cookies.get("spotify_user")
+    example = render_example(spotify.database.exists_id(user_id), index)
     response = HTMLResponse(example)
     return response
 
