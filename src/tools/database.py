@@ -46,7 +46,6 @@ class Database:
         """Creates a new user and returns their token"""
         with self.con:
             cur = self.con.cursor()
-            print(self.exists_mail(mail))
             if user_id:= self.exists_mail(mail):
                 cur.execute(f"""
                     UPDATE SPOTIFYWIDGET

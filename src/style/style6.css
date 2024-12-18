@@ -6,7 +6,7 @@
     margin: 0;
 
     font-family: "Cedarville Cursive", cursive;
-    color: #000000;
+    color: #000000; /*Couleur de la police (enlever ce commentaire)*/
     font-size: 40vh;
     line-height: 50vh;
     font-weight: 600;
@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
 
-    background: rgba(0, 0, 0, 0);
+    background: #444444; /*Couleur de l'arrière plan (enlever ce commentaire)*/
 }
 
 #song {
@@ -67,9 +67,9 @@
     flex-direction: row;
 
     text-shadow:
-        0 0 2vh #ffffff,
-        0 0 3vh #ffffff,
-        0 0 7vh #ffffff;
+        0 0 2vh #ffffff, /*Couleur du halo (enlever ce commentaire)*/
+        0 0 3vh #ffffff, /*Couleur du halo (enlever ce commentaire)*/
+        0 0 7vh #ffffff; /*Couleur du halo (enlever ce commentaire)*/
 
     animation: scroll 10s infinite alternate;
 }

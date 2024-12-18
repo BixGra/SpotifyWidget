@@ -6,8 +6,14 @@ from starlette.staticfiles import StaticFiles
 
 from src.tools.settings import base_url
 from src.tools.spotify import spotify
-from src.tools.utils import render_connect, render_main, render_iframe, render_example, render_song, \
-    render_current_song, render_about
+from src.tools.utils import (
+    render_about,
+    render_connect,
+    render_current_song,
+    render_example,
+    render_iframe,
+    render_main
+)
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(spotify.refresh, "interval", minutes=30, id="refresh_tokens")

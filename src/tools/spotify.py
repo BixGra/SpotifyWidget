@@ -79,7 +79,8 @@ class SpotifyClient:
                     "grant_type": "refresh_token",
                 }
             )
-            refreshed_tokens.append((response.json()["access_token"], user_id))
+            if response.headers.get("content-type") == "application/json":
+                refreshed_tokens.append((response.json()["access_token"], user_id))
         self.database.set_refreshed_tokens(refreshed_tokens)
 
     def has_expired(self, user_id: str) -> bool:
@@ -91,7 +92,10 @@ class SpotifyClient:
                 "Authorization": f"Bearer {token}",
             },
         )
-        return "error" in response.json()
+        if response.headers.get("content-type") == "application/json":
+            return "error" in response.json()
+        else:
+            return False
 
     @staticmethod
     def get_current_song(token: str) -> dict:
