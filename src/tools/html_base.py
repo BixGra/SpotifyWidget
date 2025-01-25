@@ -41,6 +41,9 @@ HEADER = f"""<div class="header">
                 Sandbix - <span class="bold-text">Spotify</span> widget
             </div>
         </a>
+        <div>
+            <img class="header-logo" src="{base_url}/src/img/spotify.png" alt="spotify.png"/>
+        </div>
     </div>
     <div class="header-right">
         {{header_right}}

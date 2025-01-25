@@ -64,7 +64,9 @@ a {
 }
 
 .header-left {
-
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 .header-right {
@@ -80,6 +82,10 @@ a {
 
 .header-title {
     padding: 0 10px 0 10px;
+}
+
+.header-logo {
+    max-height: 2.5vh;
 }
 
 .main {

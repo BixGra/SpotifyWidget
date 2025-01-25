@@ -13,7 +13,8 @@ songs = [
     {"image": "https://i.scdn.co/image/ab67616d0000b273fad5111be86806be0bbbe2e2", "name": "Floral", "artists": ["Ponce", "CEYLON", "Princesse Näpalm", "Léo Lenvers"]},
     {"image": "https://i.scdn.co/image/ab67616d0000b27354a277d652eba4cd35a2e78a", "name": "Harder, Better, Faster, Stronger", "artists": ["Daft Punk"]},
     {"image": "https://i.scdn.co/image/ab67616d0000b273bd2b38759d23dba73eea6a5c", "name": "Insomnies", "artists": ["Colt"]},
-    {"image": "https://i.scdn.co/image/ab67616d0000b273193c2fafdce8f116b5ca0a78", "name": "Juna", "artists": ["Clairo"]}
+    {"image": "https://i.scdn.co/image/ab67616d0000b273193c2fafdce8f116b5ca0a78", "name": "Juna", "artists": ["Clairo"]},
+    {"image": "https://i.scdn.co/image/ab67616d0000b2737a9bf5f82e32d33d4503fe7b", "name": "Cherry Wine - Live", "artists": ["Hozier"]},
 ]
 
 names = [
